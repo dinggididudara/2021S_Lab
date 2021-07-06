@@ -47,7 +47,7 @@ public class Bank extends BankTest{
 //					System.out.println("Invalid entry... please try again!");
 //					continue;
 				}//switch-case end		
-			}catch(Exception e) {
+			}catch(Exception e) {//if user enter wrong inputs 
 				System.out.println("Invalid entry... please try again!");
 			}
 		}
