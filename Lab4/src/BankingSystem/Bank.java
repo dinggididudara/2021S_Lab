@@ -3,12 +3,11 @@ package BankingSystem;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Bank extends BankTest{
+public class Bank{
 	public static String name;
-	ArrayList<Account> accounts = new ArrayList<Account>(); //type=Account object
-//	ArrayList<Person> holders = new ArrayList<Person>();//type=Person object
+	ArrayList<Account> accounts; //Array List for class Account
 	
-	Bank(){}
+	Bank(){} //initialize, empty it
 	/**
 	 * 
 	 * @param name bank name
@@ -16,63 +15,57 @@ public class Bank extends BankTest{
 	 */
 	Bank(String name,int num){//name and size from main
 		this.name = name;
-		num = accounts.size(); //total number of account holders
+		accounts = new ArrayList<Account>();
+		num = accounts.size();//total number of account holders
 	}
 	/**
 	 * @param sc Scanner for reading accounts' info
-	 * using try-catch, catching exception
+	 * using for loop to 
 	 */
 	void readAccounts(Scanner sc){
-		for(int i=0;i<accounts.size();i++){//if array list is not empty
-			try{
-				System.out.println("1. Read Accounts\n2.Run monthly process\n3.Display Accounts\n4.Exit");//printing menu
-				System.out.println("Enter your option: ");
-				int option = sc.nextInt();
-			
-				switch(option) { //switch for each options
-				case 1 :
-					accounts.add(null);
-					//readAccountDetails(sc);
-					break;
-				case 2 :
-					runMonthlyProcess();//run monthly process
-					break;
-				case 3:
-					displayAccounts();//display accounts
-					break;
-				case 4:
-					System.out.println("Goodbye... Have a nice day");
-					break;
-//				default :
-//					System.out.println("Invalid entry... please try again!");
-//					continue;
-				}//switch-case end		
-			}catch(Exception e) {//if user enter wrong inputs 
-				System.out.println("Invalid entry... please try again!");
+		for(int i=0;i<accounts.size();i++) {
+		System.out.println("1. Checking\n2. Savings");
+		System.out.printf("Enter the type of account you want to create: ");
+		int accType = sc.nextInt();	//scanning type of account
+		
+		if(accType==1) { //if checking account
+			accounts.add(i,new Checking());
+		} else if(accType==2) { //if saving account
+			accounts.add(i,new Saving());
+		} 
+		accounts.get(i).readAccountDetails(sc);
+		}
+	}
+		
+	public void runMonthlyProcess() {
+		if(accounts.isEmpty()==false) { //if not empty
+			for(int i=0;i<accounts.size();i++) {
+				accounts.get(i).updateBalance();;
+			}
+		}else {
+			System.out.println("No accounts to process");
+		}
+	}
+
+	void displayAccounts() {
+		if(accounts.isEmpty()==false) { //if not empty
+			printTitle(); 
+			for(int i=0;i<accounts.size();i++) {
+				accounts.get(i).displayAccount(); //display (printing) accounts from Account class
 			}
 		}
 	}
-	public void runMonthlyProcess() {
-//		Checking.updateBalance();	//if checking
-//		Saving.updateBalance(); 	//if saving
-		
-	}
-	void displayAccounts() {
-		printTitle();
-		for(int i=0;i<accounts.size();i++) {
-//			displayAccount(); //display (printing) accounts
-		}
-	}
 	public static void printStar() {
-		for(int i=0; i<30;i++ ) {
+		for(int i=0; i<50;i++ ) {
 		System.out.printf("*");
 		}
+		System.out.println("");
 	}
 	public static void printTitle() {
 		printStar();
-		System.out.printf("%15s BANK", name);
+		System.out.printf("%15s BANK\n", name);
 		printStar();
-		System.out.printf("Acc Number   | %10s Name | %10s Email | %4s Phone Number $4s | %5s Balance");
+		System.out.printf("Acc Number   |  Name |  Email |  Phone Number  |  Balance");
 		printStar();
 	}
 }

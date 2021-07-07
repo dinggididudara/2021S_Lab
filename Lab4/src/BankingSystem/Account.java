@@ -2,33 +2,18 @@ package BankingSystem;
 
 import java.util.Scanner;
 
-public abstract class Account extends Bank{
+public abstract class Account{
 	protected int accType;
 	protected long accNumber;
 	Person accHolder;
 	protected double balance;
 	
 	Account(){}
-	public void readAccountDetails(Scanner sc){
-		System.out.println("1. Checking\n2.Savings");
-		System.out.println("Enter the type of account you want to create: ");
-		accType = sc.nextInt();	//scanning type of account
-	
-		for(;;) {
-			if(accType==1) { //if checking account
-				new Checking();
-				break;
-			} else if(accType==2) { //if saving account
-				new Saving();
-				break;
-			} else { //if invalid number
-				System.out.println("Invalid entry... please try again!");
-				continue;
-			}
-		}
+	public void readAccountDetails(Scanner sc){		
 		System.out.printf("Enter Account Number: ");
 		accNumber = sc.nextLong();
 		
+		accHolder = new Person();
 		accHolder.readPersonalDetails(sc); //scan personal details (name, email, phone number)
 		
 		System.out.printf("Enter balance: ");
