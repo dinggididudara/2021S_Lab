@@ -2,10 +2,10 @@ package BankingSystem;
 import java.util.Scanner;
 /**
  * 
- * {@summary Person class : scaning personal info}
+ * {@summary Person class : scanning personal info}
  *
  */
-class Person{
+public class Person{
 	protected String firstName;
 	protected String lastName;
 	protected String email;
