@@ -1,5 +1,9 @@
 package BankingSystem;
-
+/**
+ * 
+ * {@summary Saving class extends Account class.}
+ *
+ */
 public class Saving extends Account{
 	final double interestRate; 
 	
@@ -9,6 +13,6 @@ public class Saving extends Account{
 	}
 	@Override
 	public void updateBalance() {
-			balance = balance *(1+ Math.pow((1 + interestRate/100),1/12));//monthly interest adding
-		}
+		balance = balance * (interestRate/1200+1);//calculate and add monthly interest
+	}
 }

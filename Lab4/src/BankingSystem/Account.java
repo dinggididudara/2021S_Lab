@@ -1,7 +1,11 @@
 package BankingSystem;
 
 import java.util.Scanner;
-
+/**
+ * 
+ * {@summary Account class is scanning details of account}
+ *
+ */
 public abstract class Account{
 	protected int accType;
 	protected long accNumber;
@@ -9,6 +13,10 @@ public abstract class Account{
 	protected double balance;
 	
 	Account(){}
+	/**
+	 * 
+	 * @param sc Scanning account details + using Person class
+	 */
 	public void readAccountDetails(Scanner sc){		
 		System.out.printf("Enter Account Number: ");
 		accNumber = sc.nextLong();
@@ -19,9 +27,11 @@ public abstract class Account{
 		System.out.printf("Enter balance: ");
 		balance = sc.nextDouble();
 	}
-	public void displayAccount(){
-		Bank.printTitle();
-		System.out.printf("%8d  | %s  | %15  | %18d  | %15.2f\n", accNumber, accHolder.getName(), accHolder.getEmail(), accHolder.getPhoneNumber(), balance);
+	/**
+	 * {@summary diaplayAccounts method : printing all info}
+	 */
+	public void displayAccounts(){
+		System.out.printf("%12d  | %10s  | %11s  | %14d  | %11.2f \n", accNumber, accHolder.getName(), accHolder.getEmail(), accHolder.getPhoneNumber(), balance);
 	}
 	abstract void updateBalance(); //define method in sub classes (Checking & Saving)	
 }

@@ -1,6 +1,10 @@
 package BankingSystem;
 import java.util.Scanner;
-
+/**
+ * 
+ * {@summary Person class : scaning personal info}
+ *
+ */
 class Person{
 	protected String firstName;
 	protected String lastName;
@@ -9,11 +13,11 @@ class Person{
 	
 	void readPersonalDetails(Scanner sc){ //scan all personal details
 		System.out.printf("Enter first name: ");
-		firstName = sc.nextLine();
+		firstName = sc.next();
 		System.out.printf("Enter last name: ");
-		lastName = sc.nextLine();
+		lastName = sc.next();
 		System.out.printf("Enter email: ");
-		email = sc.nextLine();
+		email = sc.next();
 		System.out.printf("Enter phone number: ");
 		phoneNumber = sc.nextLong();
 	}
