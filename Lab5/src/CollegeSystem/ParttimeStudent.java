@@ -1,22 +1,29 @@
 package CollegeSystem;
 
-public class ParttimeStudent extends Student{
-	double totalCourseFees;
-	double credits;
+import java.util.Scanner;
 
-	ParttimeStudent(){}
+/**
+ * {@summary : ParttimeStudent class (extends Student class, implements Policies inteface) : get detail info of part time student}
+ * 
+ *
+ */
+public class ParttimeStudent extends Student implements Policies{
+	static double totalCourseFee;
+	static double credits;
+
+	ParttimeStudent(){} //initialize
+	
 	@Override
-	void readInfo() {
-		super.readInfo();
+	void readInfo(Scanner sc) { //scan course fees, credits
+		super.readInfo(sc);
 		System.out.printf("Enter total course fees: ");
-		Scanner sc = new Scanner(System.in);
-		courseFeeTotal = sc.nextDouble();
+		totalCourseFee = sc.nextDouble();
 		System.out.printf("Enter credit hours: ");
 		credits = sc.nextDouble();
 	}
 	@Override
-	void printInfo() {
+	void printInfo() { //print details
 		super.printInfo();
-		System.out.printf("%8.2f|%10.2f|\n",courseFeeTotal, credits);
+		System.out.printf("%8.2f|%10.2f|\n",totalCourseFee, credits);
 	}
 }
