@@ -90,9 +90,9 @@ public class Student extends Person implements Policies{
 					FullTimeStudent.tuition = sc.nextDouble();
 				} else if(typeOfStu.equals("p")) {
 					ParttimeStudent.totalCourseFee = sc.nextDouble();
-					ParttimeStudent.credits = sc.nextDouble();
+					ParttimeStudent.credits = sc.nextDouble(); 
 				}
-				students.add(s); //error here how to add to arraylist???
+				students.add(s); //error here how to add to arraylist???howhowhowhowhowhowhowhowhowhowhowhowhowhow
 			}//while loop end
 			sc.close();
 			}while(sc.hasNextLine());//while ends
