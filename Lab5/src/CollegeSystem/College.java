@@ -50,6 +50,8 @@ public class College extends CollegeSystemTest{
 			}//try-catch ends
 		}//for ends
 	}//readStudentDetails end
+	
+	
 	/**
 	 * {@summary : printTitle() : print lines}
 	 */

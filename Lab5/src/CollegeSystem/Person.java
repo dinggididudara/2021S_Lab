@@ -13,6 +13,12 @@ public abstract class Person{
 	long phoneNumber;
 	
 	Person(){} //initialize
+	Person(String firstName, String lastName, String email, long phoneNumber){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+	}
 	
 	void PersonInfo(Scanner sc){	//scan personal info
 		System.out.print("Enter first name: ");

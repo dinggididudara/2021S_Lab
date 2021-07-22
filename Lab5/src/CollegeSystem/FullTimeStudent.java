@@ -8,9 +8,13 @@ import java.util.Scanner;
  *
  */
 public class FullTimeStudent extends Student{
-	static double tuition;
+	double tuition;
 	
-	FullTimeStudent(){}	//initialize
+	FullTimeStudent(){}
+	
+	FullTimeStudent(double tuition){
+		this.tuition = tuition;
+	}	//for file
 	
 	@Override
 	void readInfo(Scanner sc) { //scan tuition fee

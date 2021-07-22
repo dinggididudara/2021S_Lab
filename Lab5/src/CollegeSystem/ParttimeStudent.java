@@ -8,10 +8,15 @@ import java.util.Scanner;
  *
  */
 public class ParttimeStudent extends Student implements Policies{
-	static double totalCourseFee;
-	static double credits;
+	double totalCourseFee;
+	double credits;
 
 	ParttimeStudent(){} //initialize
+	
+	ParttimeStudent(double totalCourseFees, double credits){
+		totalCourseFee = totalCourseFees;
+		this.credits = credits;
+	}
 	
 	@Override
 	void readInfo(Scanner sc) { //scan course fees, credits
