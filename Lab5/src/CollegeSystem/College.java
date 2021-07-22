@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class College extends CollegeSystemTest{
 	public static String name;
-	ArrayList<Student> students;	
+	public static ArrayList<Student> students;	
 	Student s;
 	
 	/**

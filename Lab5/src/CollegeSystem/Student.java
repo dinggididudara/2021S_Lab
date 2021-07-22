@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -20,7 +21,10 @@ import java.util.InputMismatchException;
  * {@summary : Student class (extends Person, implements Policies) : read student info, read user input / read, update file}
  * 
  */
-public class Student extends Person implements Policies{
+public class Student extends Person implements Policies, Serializable{
+	protected static ObjectOutputStream outputObj;
+	protected static ObjectInputStream inputObj;
+	protected static FileInputStream fileInput;
 	protected String typeOfStu;
 	
 	public static String name;
@@ -31,7 +35,15 @@ public class Student extends Person implements Policies{
 	protected double total;
 	protected double gpa;
 	
-	Student(){} //initialize
+//	Student(int studentNumber, String fname, String lname, String email, String phoneNum, String program, int gpa){
+//		this.studentNumber = studentNumber;
+//		fname = firstName;
+//		lname = lastName;
+//		this.email = email;
+//		phoneNum = phoneNumber;
+//		program = programName;
+//		this.gpa = gpa;
+//	} 
 
 	@Override
 	void readInfo(Scanner sc) { //read Student info with scanner (user input)
@@ -69,20 +81,22 @@ public class Student extends Person implements Policies{
 	}
 	/**
 	 * {@summary : openFile() : open students.txt file}
+	 * @throws ClassNotFoundException 
 	 */
-	public void openFile(Scanner sc, int num) {	
-		try { //open file
+	public void openFile(Scanner sc, ArrayList<Student> students) throws ClassNotFoundException {	
+		try { //open and read file
+			Student s;
+			fileInput = new FileInputStream("students.txt"); //get file
+			inputObj = new ObjectInputStream(fileInput);
+			s = (Student) inputObj.readObject();
 			sc = new Scanner(Paths.get("src\\students.txt")); //get file
 			do{//if in the same line
 			while(sc.hasNext()) {//scanning one by one
-				ArrayList<Student> students = new ArrayList<Student>();
-				Student s = new Student();
-				typeOfStu = sc.next() + " ";
+				typeOfStu = sc.next();
 				studentNumber = sc.nextInt();
-				
-				firstName = sc.next() + " ";
-				lastName = sc.next() + " ";
-				email = sc.next() + " ";			
+				firstName = sc.next();
+				lastName = sc.next();
+				email = sc.next();			
 				phoneNumber = sc.nextLong();
 				programName = sc.next();
 				gpa = sc.nextDouble();
@@ -92,10 +106,13 @@ public class Student extends Person implements Policies{
 					ParttimeStudent.totalCourseFee = sc.nextDouble();
 					ParttimeStudent.credits = sc.nextDouble(); 
 				}
-				students.add(s); //error here how to add to arraylist???howhowhowhowhowhowhowhowhowhowhowhowhowhow
+				students.add(s); //error here how to add to arraylist???howhowhowhowhowhowhowhowhowhowhowhowhowhow // maybe using serialization
 			}//while loop end
 			sc.close();
 			}while(sc.hasNextLine());//while ends
+			inputObj.close();
+		}catch(ClassNotFoundException | ClassCastException c) {
+			System.err.println("Error");
 		}catch(FileNotFoundException fe) {
 			System.err.println("File not found or file not accessible");
 		}catch(IOException e) {

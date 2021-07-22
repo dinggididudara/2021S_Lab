@@ -43,7 +43,8 @@ public class CollegeSystemTest {
 						c.readStudentDetails(sc, number);
 						break;
 					case 2: //read info from file <- Student class
-						s.openFile(sc,number);
+						System.out.println("hmm");
+						s.openFile(sc, students);
 						break;
 					case 3: //print(display all)
 						c.printStudentsDetails(number);
@@ -59,6 +60,7 @@ public class CollegeSystemTest {
 					}//switch-case end
 					
 				}catch (InputMismatchException ie) { //if input is not match
+					System.err.println("ah?");
 					System.err.println("Input Mismatch Exception while reading number of students... please try again!");
 				} catch (Exception e) {	//if no students entered yet
 					System.out.println("");
