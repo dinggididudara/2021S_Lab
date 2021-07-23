@@ -27,6 +27,5 @@ public class FullTimeStudent extends Student{
 	void printInfo() { //print details
 		super.printInfo();
 		System.out.printf("%8.2f|\n",tuition);
-		
 	}
 }

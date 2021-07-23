@@ -30,7 +30,7 @@ public class CollegeSystemTest {
 		if(number>0) {
 			do{
 				try {
-					Student s = null;
+					Student s = new Student();
 					System.out.println("1. Read Students info from keyboard");
 					System.out.println("2. Read Students info from file");
 					System.out.println("3. Print details of all students");
@@ -55,14 +55,10 @@ public class CollegeSystemTest {
 					default:
 						System.out.println("default");
 						System.err.println("Invalid entry...selection options 1-4... please try again!");	
-						continue;
 					}//switch-case end
 					
 				}catch (InputMismatchException ie) { //if input is not match
 					System.err.println("Input Mismatch Exception while reading number of students... please try again!");
-//				} catch (Exception e) {	//if no students entered yet
-//					System.out.println("");
-//					System.out.println("######## No sutdents to display ########\n");
 			}//try-catch ends
 		}while(number>0);//do-while ends
 		}else if(number<=0) {	

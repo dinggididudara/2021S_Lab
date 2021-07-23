@@ -27,6 +27,7 @@ public class Student extends Person implements Policies{
 	protected static ObjectInputStream inputObj;
 	protected static FileInputStream fileInput;
 	protected String typeOfStu;
+	protected String line;
 	
 	public static String name;
 	public int number;
@@ -81,19 +82,13 @@ public class Student extends Person implements Policies{
 	}
 	/**
 	 * {@summary : openFile() : open students.txt file}
-	 * @throws ClassNotFoundException 
+	 * 
 	 */
 	public void openFile(Scanner sc){	
 		try { //open and read file
-			Student s;
-//			fileInput = new FileInputStream("src\\students.txt"); //get file
 			Path p = Paths.get("src\\students.txt");
-//			inputObj = new ObjectInputStream(Files.newInputStream(p));
-			
 			sc = new Scanner(p); //get file
-			do{//if in the same line
-			while(sc.hasNext()) {//scanning one by one
-//				s = (Student) inputObj.readObject();
+			while(sc.hasNextLine()){//if in the same line
 				typeOfStu = sc.next();
 				studentNumber = sc.nextInt();
 				firstName = sc.next();
@@ -105,17 +100,13 @@ public class Student extends Person implements Policies{
 				new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
 				if(typeOfStu.equals("f")) {//if full time student
 					new FullTimeStudent(sc.nextDouble());
+					College.students.add(this);
 				} else if(typeOfStu.equals("p")) {//if part time student
 					new ParttimeStudent(sc.nextDouble(), sc.nextDouble());
+					College.students.add(this);
 				}
-				sc.skip("\n");
-//				College.students.add(s); //error here how to add to arraylist???howhowhowhowhowhowhowhowhowhowhowhowhowhow // maybe using serialization
-			}//while loop end
+			}//while ends
 			sc.close();
-			}while(sc.hasNextLine());//while ends
-			inputObj.close();
-//		}catch(ClassNotFoundException | ClassCastException c) {
-//			System.err.println("Error");
 		}catch(FileNotFoundException fe) {
 			System.err.println("File not found or file not accessible");
 		}catch(IOException e) {

@@ -50,13 +50,11 @@ public class College extends CollegeSystemTest{
 			}//try-catch ends
 		}//for ends
 	}//readStudentDetails end
-	
-	
 	/**
 	 * {@summary : printTitle() : print lines}
 	 */
 	static public void printTitle() { //print lines
-		for(int i=0;i<99;i++) {
+		for(int i=0;i<90;i++) {
 			System.out.print("=");
 		}
 		System.out.println("");
@@ -66,9 +64,9 @@ public class College extends CollegeSystemTest{
 	 */
 	static public void printDisplay() {
 		printTitle();
-		System.out.printf("%40s College - List of Students\n", name);
+		System.out.printf("%37s College - List of Students\n", name);
 		printTitle();
-		System.out.printf(" Program|Student#|           Name|          Email|         Phone|  Gpa|    Fees|   Credits|\n");
+		System.out.printf(" Program|Student#|             Name|          Email|         Phone|  Gpa|    Fees| Credits|\n");
 	}
 	/**
 	 * {@summary : printAllInfos() : print all info of student array}
