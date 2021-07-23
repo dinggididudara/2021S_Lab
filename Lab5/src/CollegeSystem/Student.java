@@ -88,24 +88,26 @@ public class Student extends Person implements Policies{
 		try { //open and read file
 			Path p = Paths.get("src\\students.txt");
 			sc = new Scanner(p); //get file
-			while(sc.hasNextLine()){//if in the same line
-				typeOfStu = sc.next();
-				studentNumber = sc.nextInt();
-				firstName = sc.next();
-				lastName = sc.next();
-				email = sc.next();
-				phoneNumber = sc.nextLong();
-				programName = sc.next();
-				gpa = sc.nextDouble();
-				new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
-				if(typeOfStu.equals("f")) {//if full time student
-					new FullTimeStudent(sc.nextDouble());
-					College.students.add(this);
-				} else if(typeOfStu.equals("p")) {//if part time student
-					new ParttimeStudent(sc.nextDouble(), sc.nextDouble());
-					College.students.add(this);
-				}
-			}//while ends
+//			for(int i=0;i<100;i++){//if in the same line
+				while(sc.hasNextLine()) {
+					typeOfStu = sc.next();
+					studentNumber = sc.nextInt();
+					firstName = sc.next();
+					lastName = sc.next();
+					email = sc.next();
+					phoneNumber = sc.nextLong();
+					programName = sc.next();
+					gpa = sc.nextDouble();
+					new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
+					if(typeOfStu.equals("f")) {//if full time student
+						new FullTimeStudent(sc.nextDouble());
+						College.students.add(this);
+					} else if(typeOfStu.equals("p")) {//if part time student
+						new ParttimeStudent(sc.nextDouble(), sc.nextDouble());
+						College.students.add(this);
+					}
+				}//while ends
+//			}//for ends
 			sc.close();
 		}catch(FileNotFoundException fe) {
 			System.err.println("File not found or file not accessible");

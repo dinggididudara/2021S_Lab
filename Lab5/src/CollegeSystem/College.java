@@ -64,7 +64,7 @@ public class College extends CollegeSystemTest{
 	 */
 	static public void printDisplay() {
 		printTitle();
-		System.out.printf("%37s College - List of Students\n", name);
+		System.out.printf("%35s College - List of Students\n", name);
 		printTitle();
 		System.out.printf(" Program|Student#|             Name|          Email|         Phone|  Gpa|    Fees| Credits|\n");
 	}
