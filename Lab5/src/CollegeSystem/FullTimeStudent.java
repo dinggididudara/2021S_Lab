@@ -8,7 +8,7 @@ import java.util.Scanner;
  *
  */
 public class FullTimeStudent extends Student{
-	double tuition;
+	static double tuition;
 	
 	FullTimeStudent(){}
 	

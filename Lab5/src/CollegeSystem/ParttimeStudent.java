@@ -8,8 +8,8 @@ import java.util.Scanner;
  *
  */
 public class ParttimeStudent extends Student implements Policies{
-	double totalCourseFee;
-	double credits;
+	static double totalCourseFee;
+	static double credits;
 
 	ParttimeStudent(){} //initialize
 	
@@ -29,6 +29,6 @@ public class ParttimeStudent extends Student implements Policies{
 	@Override
 	void printInfo() { //print details
 		super.printInfo();
-		System.out.printf("%8.2f|%10.2f|\n",totalCourseFee, credits);
+		System.out.printf("%8.2f|%8.2f|\n",totalCourseFee, credits);
 	}
 }

@@ -23,13 +23,11 @@ import java.util.InputMismatchException;
  * 
  */
 public class Student extends Person implements Policies{
-	protected static ObjectOutputStream outputObj;
-	protected static ObjectInputStream inputObj;
 	protected static FileInputStream fileInput;
 	protected String typeOfStu;
-	protected String line;
+	Student a;
 	
-	public static String name;
+	public static String name; //college name
 	public int number;
 	protected String programName;
 	protected int studentNumber;
@@ -39,10 +37,10 @@ public class Student extends Person implements Policies{
 	
 	Student(){} //initialize
 	
-	Student(int studentNumber, String fname, String lname, String email, long phoneNum, String program, double gpa){
-		super(fname, lname, email, phoneNum);
+	Student(int studentNumber, String firstName, String lastName, String email, long phoneNumber, String programName, double gpa){
+		super(firstName, lastName, email, phoneNumber);
 		this.studentNumber = studentNumber;
-		program = programName;
+		this.programName = programName;
 		this.gpa = gpa;
 	} 
 
@@ -88,27 +86,26 @@ public class Student extends Person implements Policies{
 		try { //open and read file
 			Path p = Paths.get("src\\students.txt");
 			sc = new Scanner(p); //get file
-//			for(int i=0;i<100;i++){//if in the same line
-				while(sc.hasNextLine()) {
-					typeOfStu = sc.next();
-					studentNumber = sc.nextInt();
-					firstName = sc.next();
-					lastName = sc.next();
-					email = sc.next();
-					phoneNumber = sc.nextLong();
-					programName = sc.next();
-					gpa = sc.nextDouble();
-					new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
-					if(typeOfStu.equals("f")) {//if full time student
-						new FullTimeStudent(sc.nextDouble());
-						College.students.add(this);
-					} else if(typeOfStu.equals("p")) {//if part time student
-						new ParttimeStudent(sc.nextDouble(), sc.nextDouble());
-						College.students.add(this);
-					}
-				}//while ends
-//			}//for ends
-			sc.close();
+			while(sc.hasNextLine()) {//if in the same line
+				typeOfStu = sc.next();
+				studentNumber = sc.nextInt();
+				firstName = sc.next();
+				lastName = sc.next();
+				email = sc.next();
+				phoneNumber = sc.nextLong();
+				programName = sc.next();
+				gpa = sc.nextDouble();
+//				Student a = new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
+//				College.students.add(a);
+				if(typeOfStu.equals("f")) {//if full time student
+					a = new FullTimeStudent(sc.nextDouble());
+				} else if(typeOfStu.equals("p")) {//if part time student
+					a = new ParttimeStudent(sc.nextDouble(), sc.nextDouble());
+				}
+				a = new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
+				College.students.add(a);
+			}//while ends
+		sc.close();
 		}catch(FileNotFoundException fe) {
 			System.err.println("File not found or file not accessible");
 		}catch(IOException e) {
@@ -117,6 +114,6 @@ public class Student extends Person implements Policies{
 	}//openFile ends
 	@Override
 	void printInfo() {
-		System.out.printf("%8s|%8d|%10s %s|%15s|%14d| %4.2f|", programName, studentNumber, firstName, lastName, email, phoneNumber, gpa);
+		System.out.printf("%8s|%8d|%12s %s|%15s|%14d| %4.2f|", programName, studentNumber, firstName, lastName, email, phoneNumber, gpa);
 	}
 }

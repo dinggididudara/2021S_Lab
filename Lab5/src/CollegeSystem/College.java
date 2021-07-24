@@ -44,7 +44,7 @@ public class College extends CollegeSystemTest{
 					continue;
 				}
 				s.readInfo(sc);
-				students.add(i, s);
+				students.add(s);
 			}catch(InputMismatchException e) {
 				System.err.println("Input Mismatch Exception while reading student type");
 			}//try-catch ends

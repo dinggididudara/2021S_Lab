@@ -53,7 +53,6 @@ public class CollegeSystemTest {
 						sc.close();
 						System.exit(0);
 					default:
-						System.out.println("default");
 						System.err.println("Invalid entry...selection options 1-4... please try again!");	
 					}//switch-case end
 					
