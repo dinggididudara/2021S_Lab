@@ -36,14 +36,31 @@ public class Student extends Person implements Policies{
 	protected double gpa;
 	
 	Student(){} //initialize
-	
-	Student(int studentNumber, String firstName, String lastName, String email, long phoneNumber, String programName, double gpa){
-		super(firstName, lastName, email, phoneNumber);
+	/**
+	 * 
+	 * @param studentNumber student number from text file
+	 * @param firstName first name from text file
+	 * @param lastName last name from text file
+	 * @param email email from text file
+	 * @param phoneNumber phoneNumber from text file
+	 * @param programName program name from text file
+	 * @param gpa gpa from text file
+	 */
+	public void StudentFile(int studentNumber, String firstName, String lastName, String email, long phoneNumber, String programName, double gpa){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
 		this.studentNumber = studentNumber;
 		this.programName = programName;
 		this.gpa = gpa;
 	} 
-
+	public String getName() {
+		return firstName + " " + lastName;
+	}
+	/**
+	 * @param sc Scanner for reading user input
+	 */
 	@Override
 	void readInfo(Scanner sc) { //read Student info with scanner (user input)
 		System.out.print("Enter program name: ");
@@ -56,7 +73,7 @@ public class Student extends Person implements Policies{
 	}
 	/**
 	 * {@summary : readMarks(sc) : scan total courses and calculate Gpa}
-	 * @param sc
+	 * @param sc for user input
 	 */
 	void readMarks(Scanner sc) {
 		System.out.print("Enter number of courses: ");
@@ -86,7 +103,9 @@ public class Student extends Person implements Policies{
 		try { //open and read file
 			Path p = Paths.get("src\\students.txt");
 			sc = new Scanner(p); //get file
+			
 			while(sc.hasNextLine()) {//if in the same line
+				a = new Student();
 				typeOfStu = sc.next();
 				studentNumber = sc.nextInt();
 				firstName = sc.next();
@@ -95,14 +114,12 @@ public class Student extends Person implements Policies{
 				phoneNumber = sc.nextLong();
 				programName = sc.next();
 				gpa = sc.nextDouble();
-//				Student a = new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
-//				College.students.add(a);
 				if(typeOfStu.equals("f")) {//if full time student
 					a = new FullTimeStudent(sc.nextDouble());
 				} else if(typeOfStu.equals("p")) {//if part time student
 					a = new ParttimeStudent(sc.nextDouble(), sc.nextDouble());
 				}
-				a = new Student(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
+				a.StudentFile(studentNumber,firstName, lastName, email, phoneNumber, programName, gpa);
 				College.students.add(a);
 			}//while ends
 		sc.close();
@@ -111,9 +128,12 @@ public class Student extends Person implements Policies{
 		}catch(IOException e) {
 			System.err.println("Error opening file");
 		}//try-catch end
-	}//openFile ends
+	}//openFile end
+	/**
+	 * {@summary printInfo() : priting student info}
+	 */
 	@Override
 	void printInfo() {
-		System.out.printf("%8s|%8d|%12s %s|%15s|%14d| %4.2f|", programName, studentNumber, firstName, lastName, email, phoneNumber, gpa);
+		System.out.printf("%8s|%8d|%20s|%15s|%14d| %4.2f|", programName, studentNumber, getName(), email, phoneNumber, gpa);
 	}
 }

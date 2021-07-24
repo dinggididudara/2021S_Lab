@@ -3,7 +3,6 @@ package CollegeSystem;
 import java.util.Scanner;
 /**
  * {@summary : abstract Person class : scan personal info from user}
- * @author Zhang
  *
  */
 public abstract class Person{
