@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"CollegeSystem","l":"College"},{"p":"CollegeSystem","l":"CollegeSystemTest"},{"p":"CollegeSystem","l":"FullTimeStudent"},{"p":"CollegeSystem","l":"ParttimeStudent"},{"p":"CollegeSystem","l":"Person"},{"p":"CollegeSystem","l":"Policies"},{"p":"CollegeSystem","l":"Student"}];updateSearchResults();

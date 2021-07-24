@@ -74,7 +74,7 @@ public class College extends CollegeSystemTest{
 	void printStudentsDetails(int num) { //printing all info from user input
 		if(students.isEmpty()==false) { //if not empty
 			printDisplay();
-			for(int i=0;i<num;i++) {
+			for(int i=0;i<students.size();i++) {
 				students.get(i).printInfo();
 			}
 		}else {
