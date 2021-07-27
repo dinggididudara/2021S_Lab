@@ -11,4 +11,17 @@ public class LibraryManagement implements Policies{
 		System.out.printf("What is the library's name? : ");
 		name = sc.next();
 	}
+	
+	
+	@Override
+	public void whenIsDueDate() { //calculate when is due date
+		
+		
+	}
+
+	@Override
+	public void howMuchFine() { //calculate fine
+		
+		
+	}
 }

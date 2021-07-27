@@ -8,14 +8,14 @@ public class Person {
 	private String email; //email address
 	private long phoneNumber; //phone number
 	
-	Person(Scanner sc){
-		System.out.printf("What is your first name?: ");
+	void readPerson(Scanner sc){
+		System.out.print("What is your first name?: ");
 		fname = sc.next();
-		System.out.printf("What is your last name?: ");
+		System.out.print("What is your last name?: ");
 		lname = sc.next();
-		System.out.printf("What is your email?: ");
+		System.out.print("What is your email?: ");
 		email = sc.next();
-		System.out.printf("What is your phone number?: ");
+		System.out.print("What is your phone number?: ");
 		phoneNumber = sc.nextLong();
 	}
 	

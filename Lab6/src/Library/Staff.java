@@ -1,7 +1,20 @@
 package Library;
 
+import java.util.Scanner;
+
 public class Staff extends User{
 	String id; //staff id
 	int floor;
 	String section;
+	
+	Staff(){}
+	
+	void readStaff(Scanner sc) { //reading staff's information
+		System.out.print("What is your staff id?: ");
+		id = sc.next();
+		System.out.print("floor?: ");
+		floor = sc.nextInt();
+		System.out.print("section?: ");
+		section = sc.next();
+	}
 }
