@@ -1,7 +1,11 @@
 package Library;
 
 import java.util.Scanner;
-
+/**
+ * {@summary }
+ * 
+ *
+ */
 public class Person {
 	private String fname; //first name
 	private String lname; //last name

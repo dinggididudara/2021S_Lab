@@ -1,19 +1,33 @@
 package Library;
 
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class Book extends Library{ 
+public class Book extends Library implements Serializable{ 
+	FileOutputStream  output;
+	ObjectOutputStream objectOutput;
 	
+	
+	Book(){
+		
+	}
+	Book(Scanner sc){
+		
+	}
 	void readUserBook(){
 		
 	} //readUserBook
 	
 	void openFile(Scanner sc) { //open file
 		try {
+			
+			
 			Path p = Paths.get("");
 			sc = new Scanner(p);
 
@@ -25,5 +39,21 @@ public class Book extends Library{
 		}catch(IOException ioe) {
 			System.err.println("Error opening file");
 		} //try-catch end
-	}
+	} //openFile end
+	
+	void writeFile() { //writing new object to file
+		try {
+		output = new FileOutputStream("user.book");
+		objectOutput = new ObjectOutputStream(output);
+		
+		Book book = new Book();
+		
+		} catch(FileNotFoundException fe){
+			System.err.println("File not found or file not accessible");
+		}catch(IOException ioe) {
+			System.err.println("Error writing file");
+		} //try-catch end
+	} //writeFile end
+	
+	
 }

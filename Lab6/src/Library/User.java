@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 public class User extends Person{
 	
-
 	int type;
 	
-	void read(Scanner sc) {
+	void readUser(Scanner sc) {
 		while(true) {
 			System.out.print("1. Staff    2. Member\nAre you Staff or Member?: ");
 			type = sc.nextInt();
@@ -26,7 +25,5 @@ public class User extends Person{
 			} //switch-case end
 		} //while end
 	} //User end
-	
-	
 
 }

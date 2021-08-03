@@ -9,7 +9,7 @@ public class Staff extends User{
 	
 	Staff(){}
 	
-	void readStaff(Scanner sc) { //reading staff's information
+	void readStaff(Scanner sc) { //reading staff's information from keyboard
 		System.out.print("What is your staff id?: ");
 		id = sc.next();
 		System.out.print("floor?: ");

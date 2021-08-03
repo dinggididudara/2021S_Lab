@@ -1,5 +1,16 @@
 package Library;
 
-public class Comic extends Fiction{
+import java.util.Scanner;
 
+/**
+ * {@summary }
+ * 
+ *
+ */
+public class Comic extends Fiction{
+	String title;
+	Comic(Scanner sc){
+		System.out.print("Title: ");
+		title = sc.nextLine();
+	}
 }
