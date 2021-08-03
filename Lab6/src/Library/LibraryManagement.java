@@ -1,7 +1,11 @@
 package Library;
 
 import java.util.Scanner;
-
+/**
+ * {@summary }
+ * 
+ *
+ */
 public class LibraryManagement implements Policies{
 	static String name; //library name
 	public static void main(String[] args) {
@@ -12,9 +16,9 @@ public class LibraryManagement implements Policies{
 		
 		System.out.print("What is the library's name? : ");
 		name = sc.next();
-		System.out.println("1. Add Staff or Member from keyboard, then add to file(.ser)");
+		System.out.println("1. Add Staff or Member from keyboard, then add to file(.lib)");
 		System.out.println("2. Read from file");
-		System.out.println("3. Print all information");
+		System.out.println("3. Print member's information");
 		System.out.println("4. Exit");
 		System.out.print("Choose your option: ");
 		option = sc.nextInt();
@@ -25,7 +29,7 @@ public class LibraryManagement implements Policies{
 					
 					break;
 				case 2:
-					
+					Book.openBookFile();
 					break;
 				case 3:
 					

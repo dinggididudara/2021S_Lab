@@ -1,7 +1,11 @@
 package Library;
 
 import java.util.Scanner;
-
+/**
+ * {@summary }
+ * 
+ *
+ */
 public class Staff extends User{
 	String id; //staff id
 	int floor;

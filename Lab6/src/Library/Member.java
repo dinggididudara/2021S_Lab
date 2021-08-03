@@ -2,12 +2,16 @@ package Library;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * {@summary }
+ * 
+ *
+ */
 public class Member extends User{
 	String id; //member's id
 	int age;
 	int bookTotal;
-	static ArrayList<Book> list; //list for books that member took
+	static ArrayList<Book> bookArr; //list for books that member took
 	
 	Member() {}
 	
@@ -25,17 +29,15 @@ public class Member extends User{
 			int cate = sc.nextInt();
 			switch(cate) {
 			case 1:
-				new Fiction(sc);
+				Fiction f = new Fiction(sc);
+				bookArr.add(i, f);
 				break;
 			case 2:
-				new NonFiction(sc);
+				NonFiction nf = new NonFiction(sc);
+				bookArr.add(i, nf);
 				break;
-			}
-			System.out.print("book's title: ");
-			String title = sc.next();
-			
-			list.add(new Book(sc)); //send book's info to Book class and add element to list
-		}
-	}
+			} //switch-case end			
+		} //for end
+	} //readMember end
 	
 }//Member class end

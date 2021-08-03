@@ -1,9 +1,14 @@
 package Library;
 
 import java.util.Scanner;
-
+/**
+ * {@summary }
+ * 
+ *
+ */
 public class Fiction extends Book{
 	int categ;
+	
 	Fiction(Scanner sc){
 		System.out.println("1. Comic\n2. Fantasy");
 		categ = sc.nextInt();

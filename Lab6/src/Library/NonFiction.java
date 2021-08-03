@@ -7,7 +7,7 @@ import java.util.Scanner;
  * 
  *
  */
-public class NonFiction {
+public class NonFiction extends Book{
 	int categ;
 	NonFiction(Scanner sc){
 		System.out.println("1. Science\n2. Biography\n3. History");
