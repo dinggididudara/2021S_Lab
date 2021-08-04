@@ -7,17 +7,23 @@ import java.util.Scanner;
  *
  */
 public class Fiction extends Book{
-	int categ;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5728945184196674919L;
+	String categ;
 	
 	Fiction(Scanner sc){
 		System.out.println("1. Comic\n2. Fantasy");
-		categ = sc.nextInt();
+		categ = sc.next();
 		while(true) {
 			switch(categ) {
-			case 1:
+			case "1":
+			case "Comic":
 				new Comic(sc);
 				break;
-			case 2:
+			case "2":	
+			case "Fantasy":
 				new Fantasy(sc);
 				break;
 			default:

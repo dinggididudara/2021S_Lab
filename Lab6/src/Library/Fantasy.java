@@ -8,6 +8,10 @@ import java.util.Scanner;
  *
  */
 public class Fantasy extends Fiction{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3741879872338515361L;
 	String title;
 	String author;
 	int year;

@@ -15,27 +15,37 @@ import java.util.Scanner;
  *
  */
 public class User extends Person implements Serializable{
-	FileOutputStream  output;
-	ObjectOutputStream objectOutput;
-	FileInputStream inputStaff;
-	ObjectInputStream objectInputMember;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5959835822560038222L;
+//	FileOutputStream  output;
+//	ObjectOutputStream objectOutput;
+//	FileInputStream inputStaff;
+//	ObjectInputStream objectInputMember;
+	
 	static ArrayList<Staff> staffArr = new ArrayList<Staff>();
 	static ArrayList<Member> memberArr = new ArrayList<Member>();
 	
-	int type;
-	
-	void readUser(Scanner sc) {
-		while(true) {
+	User(){}
+	static void readUser(Scanner sc) {
+		System.out.print("how many people wil you write? ");
+		int num = sc.nextInt();
+		for(int i=0;i<num;i++) {
 			System.out.print("1. Staff \n2. Member\nAre you Staff or Member?: ");
-			type = sc.nextInt();
+			int type = sc.nextInt();
 			switch(type) {
 			case 1:
 				Staff s = new Staff();
 				s.readStaff(sc);
+				staffArr.add(i,s);
+				writeStaffFile(staffArr.get(i));				
 				break;
 			case 2:
 				Member m = new Member();
 				m.readMember(sc);
+				memberArr.add(i,m);
+				writeMemberFile(memberArr.get(i));
 				break;
 			default:
 				System.out.println("Wrong type, please try again.");
@@ -51,7 +61,10 @@ public class User extends Person implements Serializable{
 			ObjectInputStream objectInputStaff = new ObjectInputStream(inputStaff);
 			
 			staffArr = (ArrayList<Staff>) objectInputStaff.readObject();
-
+			
+			for(int i=0;i<staffArr.size();i++) { //print staff file - staff.lib
+				System.out.println(staffArr.get(i));
+			}
 			objectInputStaff.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
@@ -65,11 +78,14 @@ public class User extends Person implements Serializable{
 	@SuppressWarnings("unchecked")
 	static void openMemberfFile() { //open member file
 		try {			
-			FileInputStream inputStaff = new FileInputStream("member.lib");
+			FileInputStream inputStaff = new FileInputStream("src\\member.lib");
 			ObjectInputStream objectInputMember = new ObjectInputStream(inputStaff);
 			
 			staffArr = (ArrayList<Staff>) objectInputMember.readObject();
-
+			
+			for(int i=0;i<staffArr.size();i++) { //print member file - member.lib
+				System.out.println(staffArr.get(i));
+			}
 			objectInputMember.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
@@ -80,17 +96,16 @@ public class User extends Person implements Serializable{
 		} //try-catch end
 	} //openFile end
 	
-	void writeStaffFile() { //writing new object to file
+	static void writeStaffFile(Staff staff) { //writing new object to file
 		try {
-		output = new FileOutputStream("staff.lib");
-		objectOutput = new ObjectOutputStream(output);
+			FileOutputStream output = new FileOutputStream("staff.lib");
+			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 		
+			for(int i=0;i<staffArr.size();i++) {
+				objectOutput.writeObject(staffArr.get(i));
+			}
 		
-		for(int i=0;i<staffArr.size();i++) {
-			objectOutput.writeObject(staffArr.get(i));
-		}
-		
-		output.close();
+			output.close();
 		} catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
 		}catch(IOException ioe) {
@@ -98,16 +113,16 @@ public class User extends Person implements Serializable{
 		} //try-catch end
 	} //writeStaffFile end
 	
-	void writeMemberFile() { //writing new object to file
+	static void writeMemberFile(Member member) { //writing new object to file
 		try {
-		output = new FileOutputStream("member.lib");
-		objectOutput = new ObjectOutputStream(output);
+			FileOutputStream output = new FileOutputStream("src\\member.lib");
+			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 		
-		for(int i=0;i<memberArr.size();i++) {
-			objectOutput.writeObject(memberArr.get(i));
-		}
+			for(int i=0;i<memberArr.size();i++) {
+				objectOutput.writeObject(memberArr.get(i));
+			}
 		
-		output.close();
+			output.close();
 		} catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
 		}catch(IOException ioe) {

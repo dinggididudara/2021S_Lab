@@ -1,4 +1,7 @@
 package Library;
+
+import java.util.Scanner;
+
 /**
  * {@summary }
  * 
@@ -9,6 +12,6 @@ public interface Policies {
 	final int maxBooks = 5; //maximum 5 books they can borrow
 	final int due = 14; //due date is 14 days
 	
-	abstract void whenIsDueDate();
-	abstract void howMuchFine();
+	abstract void whenIsDueDate(Scanner sc);
+	abstract void howMuchFine(int days);
 }

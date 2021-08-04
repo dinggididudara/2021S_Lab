@@ -8,6 +8,10 @@ import java.util.Scanner;
  *
  */
 public class Science extends NonFiction{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1060320337993831098L;
 	String title;
 	String author;
 	int year;

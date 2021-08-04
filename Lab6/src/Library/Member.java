@@ -8,6 +8,10 @@ import java.util.Scanner;
  *
  */
 public class Member extends User{
+	/**
+	 * serial id for object writing
+	 */
+	private static final long serialVersionUID = 7059470493805464799L;
 	String id; //member's id
 	int age;
 	int bookTotal;
@@ -16,28 +20,13 @@ public class Member extends User{
 	Member() {}
 	
 	void readMember(Scanner sc) {
+		super.readPerson(sc);
 		System.out.print("What is your member id?: ");
 		id = sc.next();
 		System.out.print("What is your age?: ");
 		age = sc.nextInt();
-		System.out.println("How many books did you borrow?: ");
-		bookTotal = sc.nextInt();
-		for(int i=0;i<bookTotal;i++) { //adding 
-			System.out.printf("information of %d book", (i+1));
-			System.out.println("1. Fiction\n2. Non-fiction");
-			System.out.print("book's category?: ");
-			int cate = sc.nextInt();
-			switch(cate) {
-			case 1:
-				Fiction f = new Fiction(sc);
-				bookArr.add(i, f);
-				break;
-			case 2:
-				NonFiction nf = new NonFiction(sc);
-				bookArr.add(i, nf);
-				break;
-			} //switch-case end			
-		} //for end
+		
+		Book.readUserBook(sc);
+		
 	} //readMember end
-	
 }//Member class end

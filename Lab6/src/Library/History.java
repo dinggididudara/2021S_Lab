@@ -7,6 +7,10 @@ import java.util.Scanner;
  *
  */
 public class History extends NonFiction{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2212715450013816766L;
 	String title;
 	String author;
 	int year;
