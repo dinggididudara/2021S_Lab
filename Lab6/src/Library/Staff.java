@@ -18,7 +18,6 @@ public class Staff extends User{
 	Staff(){}
 	
 	void readStaff(Scanner sc) { //reading staff's information from keyboard
-		super.readPerson(sc);
 		System.out.print("What is your staff id?: ");
 		id = sc.next();
 		System.out.print("floor?: ");

@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 
  *
  */
-public class LibraryManagement implements Policies{
+public class LibraryManagement{
 	static String name; //library name
 	public static void main(String[] args) {
 		int option;
@@ -17,9 +17,9 @@ public class LibraryManagement implements Policies{
 	
 		try {
 		while(true) {	
-			
+			Library l = new Library();
 			System.out.println("1. Add Staff or Member from keyboard, then add to file(.lib)");
-			System.out.println("2. Read,Print from file");
+			System.out.println("2. Print Book lists");
 			System.out.println("3. Print staff's information");
 			System.out.println("4. Print member's information");
 			System.out.println("5. Exit");
@@ -27,19 +27,20 @@ public class LibraryManagement implements Policies{
 			option = sc.nextInt();
 			switch(option) {
 				case 1:
-					User.readUser(sc);
+					l.readDetails(sc);
 					break;
 				case 2:
-					print();
+					printBookTable();
 					Book.openBookFile();
+					Book.printBook();
 					break;
 				case 3:
-					print();
-					Library.printMember();
+					printStaffTable();
+					l.printDetailsStaff();
 					break;
 				case 4:
-					print();
-					Library.printStaff();
+					printMemberTable();
+					l.printDetailsStaff();
 					break;
 				case 5:
 					sc.close();
@@ -52,29 +53,27 @@ public class LibraryManagement implements Policies{
 		} //while end
 		} catch(Exception e) {
 			System.err.println("please try again");
-		}
+		} //try-catch end
 		
 	} //main end
 	
-	public static void print() {
+	public static void printLibraryName() {
 		System.out.printf("%15s Library\n", name);
 		System.out.println("***************************************");
-	}
-
-	@Override
-	public void whenIsDueDate(Scanner sc) {
-		System.out.print("How many days passed since borrowed? ");
-		int days = sc.nextInt();
-		howMuchFine(days);		
-	}
-
-	@Override
-	public void howMuchFine(int days) {
-		if(days<=14) {
-			System.out.printf("Your due is %d days left.\n", (due-days));
-		}else {
-			System.out.printf("Too late. Your fine will be %d $\n", (days-due)*fine);
-		} //if-else end
-	} //howMuchFine end
+	} //print end
 	
+	public static void printStaffTable() {
+		printLibraryName();
+		System.out.println(" Name | Staff Id | Section | ");
+	}
+	
+	public static void printMemberTable() {
+		printLibraryName();
+		System.out.println(" Name | Member Id | Books | OverDue | Fine |");
+	}
+	
+	public static void printBookTable() {
+		printLibraryName();
+		System.out.println("Category | Title | Author | Year |");
+	}
 } //LibraryManagement class end
