@@ -11,13 +11,13 @@ public class LibraryManagement{
 	public static void main(String[] args) {
 		int option;
 	
+	
 		Scanner sc = new Scanner(System.in);
 		System.out.print("What is the library's name? : ");
 		name = sc.next();
 	
 		try {
 		while(true) {	
-			Library l = new Library();
 			System.out.println("1. Add Staff or Member from keyboard, then add to file(.lib)");
 			System.out.println("2. Print Book lists");
 			System.out.println("3. Print staff's information");
@@ -27,20 +27,20 @@ public class LibraryManagement{
 			option = sc.nextInt();
 			switch(option) {
 				case 1:
-					l.readDetails(sc);
+					Library.readDetails(sc);
 					break;
 				case 2:
 					printBookTable();
 					Book.openBookFile();
-					Book.printBook();
+					Book.print();
 					break;
 				case 3:
 					printStaffTable();
-					l.printDetailsStaff();
+					Library.printDetailsStaff();
 					break;
 				case 4:
 					printMemberTable();
-					l.printDetailsStaff();
+					Library.printDetailsStaff();
 					break;
 				case 5:
 					sc.close();

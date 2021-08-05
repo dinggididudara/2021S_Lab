@@ -21,13 +21,19 @@ public class NonFiction extends Book{
 		System.out.print(":: ");
 		categ = sc.next();
 			switch(categ) {
+			case "1":
 			case "Science":
+				categ = "Science";
 				nf = new Science();
-				break;	
+				break;
+			case "2":
 			case "Biography":
+				categ = "Biography";
 				nf = new Biography();
 				break;
+			case "3":
 			case "History":
+				categ = "History";
 				nf = new History();
 			default:
 				System.out.println("Wrong type! Try again");

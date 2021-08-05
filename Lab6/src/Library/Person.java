@@ -7,10 +7,10 @@ import java.util.Scanner;
  *
  */
 public abstract class Person {
-	private String fname; //first name
-	private String lname; //last name
-	private String email; //email address
-	private long phoneNumber; //phone number
+	protected String fname; //first name
+	protected String lname; //last name
+	protected String email; //email address
+	protected long phoneNumber; //phone number
 
 	void PersonInfo(Scanner sc){
 		System.out.print("What is your first name?: ");

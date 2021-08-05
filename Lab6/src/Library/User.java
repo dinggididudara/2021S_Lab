@@ -18,6 +18,6 @@ public class User extends Person implements Serializable{
 
 	@Override
 	void print() {
-		
+		System.out.printf(" %15s |", getName());
 	}
 } //User class end

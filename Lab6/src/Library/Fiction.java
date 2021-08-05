@@ -19,10 +19,14 @@ public class Fiction extends Book{
 		System.out.println("1. Comic\n2. Fantasy");
 		categ = sc.next();
 			switch(categ) {
+			case "1":
 			case "Comic":
+				categ = "Comic";
 				f = new Comic();
 				break;
+			case "2":
 			case "Fantasy":
+				categ = "Fantasy";
 				f = new Fantasy();
 				break;
 			default:

@@ -14,13 +14,13 @@ import java.util.Scanner;
  * 
  *
  */
-public class Library extends LibraryManagement{ //storing users and books info
+public abstract class Library extends LibraryManagement{ //storing users and books info
 	
 	static ArrayList<Staff> staffArr = new ArrayList<Staff>();
 	static ArrayList<Member> memberArr = new ArrayList<Member>();
 	static ArrayList<Book> bookArr = new ArrayList<Book>();
 	
-	void readDetails(Scanner sc) {
+	static void readDetails(Scanner sc) {
 		System.out.print("how many people wil you write? ");
 		int num = sc.nextInt();
 		for(int i=0;i<num;i++) {
@@ -48,13 +48,13 @@ public class Library extends LibraryManagement{ //storing users and books info
 		} //while end
 	} //readDetails end
 	
-	void printDetailsStaff() {
+	static void printDetailsStaff() {
 		if(!(staffArr.isEmpty())) {
 			for(int i=0;i<staffArr.size();i++) {
 				staffArr.get(i).print();
 			}
 		}else {
-			System.err.println("Please read users from keyboard or file");
+			System.err.println("Please read staffs from keyboard or file");
 		} //if-else end
 	}//printDetails end
 	
@@ -64,7 +64,7 @@ public class Library extends LibraryManagement{ //storing users and books info
 				memberArr.get(i).print();
 			}
 		}else {
-			System.err.println("Please read users from keyboard or file");
+			System.err.println("Please read members from keyboard or file");
 		} //if-else end
 	}//printDetails end
 	
@@ -179,6 +179,7 @@ public class Library extends LibraryManagement{ //storing users and books info
 		}catch(IOException ioe) {
 			System.err.println("Error writing file");
 		} //try-catch end
-		
 	} //writeBookFile end
+	abstract void read(Scanner sc);
+	abstract void print();
 } //Library class end

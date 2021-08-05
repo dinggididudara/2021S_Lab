@@ -7,7 +7,7 @@ import java.util.Scanner;
  * 
  *
  */
-public abstract class Book extends Library implements Serializable{
+public class Book extends Library implements Policies,Serializable{
 	/**
 	 * serial id for object writer
 	 */
@@ -15,10 +15,9 @@ public abstract class Book extends Library implements Serializable{
 	protected String title;
 	protected String author;
 	protected int year;
-
 	
-	Book(){}
-	static void readUserBook(Scanner sc){
+	@Override
+	void read(Scanner sc) {
 		Book b;
 		System.out.print("How many books did you borrow?: ");
 		int bookTotal = sc.nextInt();
@@ -41,7 +40,9 @@ public abstract class Book extends Library implements Serializable{
 				} //switch-case end
 				b.read(sc);
 				bookArr.add(i,b);
-				writeBookFile(bookArr);
+				
+				whenIsDueDate(sc, bookTotal); //calculate duedate
+				writeBookFile(bookArr); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
 				System.out.println("over maximum. Try again.");
 				continue;
@@ -49,16 +50,33 @@ public abstract class Book extends Library implements Serializable{
 		} //for end
 	} //readUserBook
 	
-	static void printBook() {
+	@Override
+	public void whenIsDueDate(Scanner sc, int bookTotal) {
+		System.out.print("How many days passed since borrowed? ");
+		int days = sc.nextInt();
+		howMuchFine(days, bookTotal);		
+	} //whenIsDueDate end
+
+	@Override
+	public void howMuchFine(int days, int bookTotal) {
+		int overdue = days-due;
+		if(days<=14) {
+			System.out.printf("Your due is %d days left.\n", overdue);
+		}else {
+			for(int i=0;i<bookTotal;i++) {
+				int totalFine = overdue*fine;
+				System.out.printf("Too late. Your fine will be %d $\n", totalFine);
+			} //for end
+		}//if-else end
+	} //howMuchFine end
+	@Override
+	void print() {
 		if(!(bookArr.isEmpty())) {
 			for(int i=0;i<bookArr.size();i++) {
-				bookArr.get(i).print();;
+				bookArr.get(i).print();
 			}
 		} else {
 			System.err.println("No book lists");
 		}
 	} //printBook end
-	
-	abstract void read(Scanner sc);
-	abstract void print();
 } //Book class end
