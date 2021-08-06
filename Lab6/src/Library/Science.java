@@ -17,7 +17,7 @@ public class Science extends NonFiction{
 	int year;
 	
 	@Override
-	public void read(Scanner sc) {
+	public void readBook(Scanner sc) {
 		System.out.print("Title: ");
 		title = sc.next();
 		System.out.print("Author: ");

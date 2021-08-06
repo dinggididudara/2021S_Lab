@@ -27,9 +27,8 @@ public class Staff extends User{
 		this.floor = floor;
 		this.section = section;
 	}
-	
-	@Override
-	void read(Scanner sc) { //reading staff's information from keyboard
+
+	void readStaff(Scanner sc) { //reading staff's information from keyboard
 		super.PersonInfo(sc);
 		System.out.print("What is your staff id?: ");
 		id = sc.next();
@@ -39,9 +38,11 @@ public class Staff extends User{
 		section = sc.next();
 	}
 	
+//	public String getId() {return id;}
+//	public String getSection() {return section;}
+	
 	void writeStaffFile(ArrayList<Staff> staffArr) { //writing new object to file
 		try {
-			
 			FileOutputStream output = new FileOutputStream("staff.lib"); //open file
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 		

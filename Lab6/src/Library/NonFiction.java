@@ -16,7 +16,7 @@ public class NonFiction extends Book{
 	NonFiction nf;
 
 	@Override
-	public void read(Scanner sc) {
+	public void readBook(Scanner sc) {
 		System.out.println("1. Science\n2. Biography\n3. History");
 		System.out.print(":: ");
 		categ = sc.next();
@@ -39,7 +39,7 @@ public class NonFiction extends Book{
 				System.out.println("Wrong type! Try again");
 //				continue;
 			} //switch-case end
-			nf.read(sc);
+			nf.readBook(sc);
 	} //read end
 
 //	@Override

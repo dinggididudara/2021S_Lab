@@ -25,15 +25,15 @@ public class Library implements Serializable{ //storing users and books info
 			switch(type) {
 			case 1: //if staff
 				Staff s = new Staff();
-				s.read(sc);
-				staffArr.add(s);
+				s.readStaff(sc);
+				staffArr.add(i,s);
 				s.writeStaffFile(staffArr);
 				break;
 			case 2: //if member
 				Member m = new Member();
-				m.read(sc);
-				memberArr.add(m);
-				m.writeMemberFile(memberArr);
+				m.readStaff(sc);
+				memberArr.add(i,m);
+				m.writeMemberFile();
 				break;
 			default:
 				System.out.println("Wrong type, please try again.");

@@ -15,7 +15,7 @@ public class Fiction extends Book{
 	Fiction f;
 	
 	@Override
-	public void read(Scanner sc) {
+	public void readBook(Scanner sc) {
 		System.out.println("1. Comic\n2. Fantasy");
 		categ = sc.next();
 		switch(categ) {
@@ -33,7 +33,7 @@ public class Fiction extends Book{
 			System.out.println("Wrong type! Try again");
 //			continue;
 		} //switch-case end 
-		f.read(sc);
+		f.readBook(sc);
 	} //read end
 	void print() {
 		System.out.printf(" %10s |", categ);

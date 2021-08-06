@@ -36,13 +36,13 @@ public class Book implements Serializable{
 		this.year = year;
 	}
 
-	public void read(Scanner sc) {
+	public void readBook(Scanner sc) {
 		System.out.print("How many books did you borrow?: ");
 		bookTotal = sc.nextInt();
-		readBook(sc, bookTotal);
+		readBook2(sc, bookTotal);
 	} //read end
 	
-	public void readBook(Scanner sc, int bookTotal) {
+	public void readBook2(Scanner sc, int bookTotal) {
 		for(int i=0;i<bookTotal;i++) { //add books
 			if(bookTotal <= 5) {
 				Book b = new Book();
@@ -61,7 +61,7 @@ public class Book implements Serializable{
 					System.out.println("Wrong type! Please try again.");
 					continue;
 				} //switch-case end
-				b.read(sc);
+				b.readBook(sc);
 				bookArr.add(i, b);
 				writeBookFile(); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books

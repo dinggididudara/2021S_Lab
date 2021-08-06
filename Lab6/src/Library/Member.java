@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * {@summary Member class : implements Policies, get member's information}
@@ -30,22 +29,19 @@ public class Member extends User implements Policies{
 		this.overdue = overdue;
 		this.totalFine = totalFine;
 	}
-	
-	@Override
-	void read(Scanner sc) {
+
+	void readMember(Scanner sc) {
 		super.PersonInfo(sc);
 		System.out.print("What is your member id?: ");
 		id = sc.next();
 		System.out.print("What is your age?: ");
 		age = sc.nextInt();
 		Book b = new Book();
-		b.read(sc);
-		whenIsDueDate(sc, bookTotal);
+		b.readBook(sc);
+		whenIsDueDate(sc, bookTotal);		
 	} //readMember end
-//	@Override
-//	void print() {
-//		System.out.printf(" %s |", id);
-//	}
+	
+	public String getId() {return id;}
 	
 	@Override
 	public int whenIsDueDate(Scanner sc, int bookTotal) {
@@ -69,13 +65,13 @@ public class Member extends User implements Policies{
 		return totalFine;
 	} //howMuchFine end
 	
-	void writeMemberFile(ArrayList<Member> memberArr) { //writing new object to file
+	void writeMemberFile() { //writing new object to file
 		try {
 			FileOutputStream output = new FileOutputStream("member.lib");
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 			
-			for(int i=0;i<memberArr.size();i++) {
-				objectOutput.writeObject(memberArr.get(i));
+			for(int i=0;i<Library.memberArr.size();i++) {
+				objectOutput.writeObject(Library.memberArr.get(i));
 			}
 		
 			output.close();

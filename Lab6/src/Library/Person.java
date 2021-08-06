@@ -23,6 +23,6 @@ public abstract class Person {
 		phoneNumber = sc.nextLong();
 	} //PersonInfo end
 	
-	abstract void read(Scanner sc);
+	abstract void readStaff(Scanner sc);
 	abstract void print();
 }
