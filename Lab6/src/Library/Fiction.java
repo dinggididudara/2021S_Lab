@@ -10,7 +10,7 @@ public class Fiction extends Book{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5959835822560038222L;
+	private static final long serialVersionUID = 1L;
 	String categ;
 	Fiction f;
 	

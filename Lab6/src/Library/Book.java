@@ -18,7 +18,7 @@ public class Book implements Serializable{
 	/**
 	 * serial id for object writer
 	 */
-	private static final long serialVersionUID = 5959835822560038222L;
+	private static final long serialVersionUID = 1L;
 	protected String categ;
 	protected String title;
 	protected String author;
@@ -72,18 +72,8 @@ public class Book implements Serializable{
 	}
 		
 	public void printt() {
-		System.out.printf(" %s | %s | %s | %d |\n", categ, title, author, year);
+		
 	}
-	
-	public static void printBook() { //printing book array
-		if(!(bookArr.isEmpty())) {
-			for(int i=0;i<bookArr.size();i++) {
-				bookArr.get(i).printt();
-			}
-		} else {
-			System.err.println("No book lists");
-		}
-	} //printBook end
 
 	static void openBookFile() { //open book file
 		try {
@@ -92,12 +82,15 @@ public class Book implements Serializable{
 			
 			bookArr.add((Book) objectInputBook.readObject());
 			
-			for(int i=0;i<bookArr.size();i++) { //print book lists
-				bookArr.get(i).printt();
+			if(!(bookArr.isEmpty())) {
+				for(int i=0;i<bookArr.size();i++) {
+					System.out.printf(" %s | %s | %s | %d |\n", bookArr.get(i).categ, bookArr.get(i).title, bookArr.get(i).author, bookArr.get(i).year);
+				}
+			} else {
+				System.err.println("No book lists");
 			}
 		
-			
-			objectInputBook.close();
+		objectInputBook.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
 		}catch(ClassNotFoundException e) {

@@ -15,7 +15,7 @@ public class Staff extends User{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5959835822560038222L;
+	private static final long serialVersionUID = 1L;
 	String id; //staff id
 	int floor;
 	String section;
@@ -28,7 +28,8 @@ public class Staff extends User{
 		this.section = section;
 	}
 	
-	void readStaff(Scanner sc) { //reading staff's information from keyboard
+	@Override
+	void read(Scanner sc) { //reading staff's information from keyboard
 		super.PersonInfo(sc);
 		System.out.print("What is your staff id?: ");
 		id = sc.next();
@@ -38,14 +39,10 @@ public class Staff extends User{
 		section = sc.next();
 	}
 	
-	void printStaff() {
-		System.out.printf("%d | %s |\n",id, section);
-	}
-	
 	void writeStaffFile(ArrayList<Staff> staffArr) { //writing new object to file
 		try {
 			
-			FileOutputStream output = new FileOutputStream("staff.lib");
+			FileOutputStream output = new FileOutputStream("staff.lib"); //open file
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 		
 			for(int i=0;i<staffArr.size();i++) {

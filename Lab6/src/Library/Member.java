@@ -15,7 +15,7 @@ public class Member extends User implements Policies{
 	/**
 	 * serial id for object writing
 	 */
-	private static final long serialVersionUID = 5959835822560038222L;
+	private static final long serialVersionUID = 1L;
 	String id; //member's id
 	int age;
 	int bookTotal;
@@ -31,7 +31,8 @@ public class Member extends User implements Policies{
 		this.totalFine = totalFine;
 	}
 	
-	void readMember(Scanner sc) {
+	@Override
+	void read(Scanner sc) {
 		super.PersonInfo(sc);
 		System.out.print("What is your member id?: ");
 		id = sc.next();
@@ -41,10 +42,10 @@ public class Member extends User implements Policies{
 		b.read(sc);
 		whenIsDueDate(sc, bookTotal);
 	} //readMember end
-	
-	void printMember() {
-		System.out.printf(" %s |", id);
-	}
+//	@Override
+//	void print() {
+//		System.out.printf(" %s |", id);
+//	}
 	
 	@Override
 	public int whenIsDueDate(Scanner sc, int bookTotal) {

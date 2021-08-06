@@ -10,7 +10,7 @@ public class History extends NonFiction{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5959835822560038222L;
+	private static final long serialVersionUID = 1L;
 	String title;
 	String author;
 	int year;

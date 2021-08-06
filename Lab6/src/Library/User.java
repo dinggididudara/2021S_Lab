@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  */
 public class User extends Person implements Serializable{
-	private static final long serialVersionUID = 5959835822560038222L;
+	private static final long serialVersionUID = 1L;
 	
 	@Override
 	void read(Scanner sc) {
@@ -27,11 +27,20 @@ public class User extends Person implements Serializable{
 	void openStaffFile() { //open staff file
 		try {			
 			ArrayList<Staff> staffArr = new ArrayList<Staff>();
-			FileInputStream inputStaff = new FileInputStream("staff.lib");
+			FileInputStream inputStaff = new FileInputStream("staff.lib"); //open file
 			ObjectInputStream objectInputStaff = new ObjectInputStream(inputStaff);
 			
-			staffArr.add((Staff)objectInputStaff.readObject());
-			printDetailsStaff(staffArr);
+			staffArr.add((Staff)objectInputStaff.readObject()); //read objects
+			
+			if(!(staffArr.isEmpty())) {
+				for(int i=0;i<staffArr.size();i++) {
+//					staffArr.get(i).print();
+					System.out.printf(" %s | %d | %s |\n", staffArr.get(i).getName(),staffArr.get(i).id, staffArr.get(i).section);
+				}
+			}else {
+				System.err.println("Please read staffs from keyboard or file");
+			} //if-else end
+//			printDetailsStaff(staffArr);
 			
 			objectInputStaff.close();
 		}catch(FileNotFoundException fe){
@@ -49,11 +58,16 @@ public class User extends Person implements Serializable{
 			FileInputStream inputStaff = new FileInputStream("member.lib");
 			ObjectInputStream objectInputMember = new ObjectInputStream(inputStaff);
 			
-//			for(int i=0;i<100;i++) {
-//				memberArr = (ArrayList<Member>) objectInputMember.readObject();
-				memberArr.add((Member) objectInputMember.readObject());
-				printDetailsMember(memberArr);
-//			}
+			memberArr.add((Member) objectInputMember.readObject());
+			printDetailsMember(memberArr);
+
+			if(!(memberArr.isEmpty())) {
+				for(int i=0;i<memberArr.size();i++) {
+					System.out.printf(" %s | %s |\n", memberArr.get(i).getName(), memberArr.get(i).id);
+				}
+			}else {
+				System.err.println("Please read members from keyboard or file");
+			} //if-else end
 			
 			objectInputMember.close();
 		}catch(FileNotFoundException fe){
@@ -74,7 +88,7 @@ public class User extends Person implements Serializable{
 	static void printDetailsStaff(ArrayList<Staff> staffArr) {
 		if(!(staffArr.isEmpty())) {
 			for(int i=0;i<staffArr.size();i++) {
-				staffArr.get(i).printStaff();
+				staffArr.get(i).print();
 			}
 		}else {
 			System.err.println("Please read staffs from keyboard or file");
@@ -84,7 +98,7 @@ public class User extends Person implements Serializable{
 	static void printDetailsMember(ArrayList<Member> memberArr) {
 		if(!(memberArr.isEmpty())) {
 			for(int i=0;i<memberArr.size();i++) {
-				memberArr.get(i).printMember();
+				memberArr.get(i).print();
 			}
 		}else {
 			System.err.println("Please read members from keyboard or file");

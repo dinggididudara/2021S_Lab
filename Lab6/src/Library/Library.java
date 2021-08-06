@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Library implements Serializable{ //storing users and books info
 
-	private static final long serialVersionUID = 5959835822560038222L;
+	private static final long serialVersionUID = 1L;
 	
 	static ArrayList<Staff> staffArr = new ArrayList<Staff>();
 	static ArrayList<Member> memberArr = new ArrayList<Member>();
@@ -25,13 +25,13 @@ public class Library implements Serializable{ //storing users and books info
 			switch(type) {
 			case 1: //if staff
 				Staff s = new Staff();
-				s.readStaff(sc);
+				s.read(sc);
 				staffArr.add(s);
 				s.writeStaffFile(staffArr);
 				break;
 			case 2: //if member
 				Member m = new Member();
-				m.readMember(sc);
+				m.read(sc);
 				memberArr.add(m);
 				m.writeMemberFile(memberArr);
 				break;
