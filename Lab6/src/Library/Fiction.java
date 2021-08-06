@@ -38,7 +38,7 @@ public class Fiction extends Book{
 
 	@Override
 	void print() {
-		System.out.printf(" %10s", categ);
+		System.out.printf(" %10s |", categ);
 		
 	}
 }

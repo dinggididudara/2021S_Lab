@@ -13,5 +13,5 @@ public interface Policies {
 	final int due = 14; //due date is 14 days
 	
 	abstract void whenIsDueDate(Scanner sc, int bookTotal);
-	abstract void howMuchFine(int days, int bookTotal);
+	abstract int howMuchFine(int days, int bookTotal);
 }

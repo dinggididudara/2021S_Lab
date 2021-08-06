@@ -9,8 +9,8 @@ import java.util.Scanner;
 public abstract class Person {
 	protected String fname; //first name
 	protected String lname; //last name
-	protected String email; //email address
-	protected long phoneNumber; //phone number
+	transient protected String email; //email address
+	transient protected long phoneNumber; //phone number
 
 	void PersonInfo(Scanner sc){
 		System.out.print("What is your first name?: ");
@@ -22,10 +22,6 @@ public abstract class Person {
 		System.out.print("What is your phone number?: ");
 		phoneNumber = sc.nextLong();
 	} //PersonInfo end
-	
-	public String getName() {
-		return fname + " " + lname;
-	} //getName end
 	
 	abstract void read(Scanner sc);
 	abstract void print();

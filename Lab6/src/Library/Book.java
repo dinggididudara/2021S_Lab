@@ -7,20 +7,29 @@ import java.util.Scanner;
  * 
  *
  */
-public class Book extends Library implements Policies,Serializable{
+public abstract class Book extends Library implements Serializable{
 	/**
 	 * serial id for object writer
 	 */
 	private static final long serialVersionUID = 7305354794360305675L;
+	protected static int bookTotal;
+	protected String categ;
 	protected String title;
 	protected String author;
 	protected int year;
 	
-	@Override
-	void read(Scanner sc) {
+	Book(){}
+	Book(String categ, String title, String author, int year){
+		this.categ = categ;
+		this.title = title;
+		this.author = author;
+		this.year = year;
+	}
+
+	public static void readBook(Scanner sc) {
 		Book b;
 		System.out.print("How many books did you borrow?: ");
-		int bookTotal = sc.nextInt();
+		bookTotal = sc.nextInt();
 		for(int i=0;i<bookTotal;i++) { //add books
 			if(bookTotal <= 5) {
 				System.out.printf("information of book no.%d\n", (i+1));
@@ -39,10 +48,10 @@ public class Book extends Library implements Policies,Serializable{
 					continue;
 				} //switch-case end
 				b.read(sc);
-				bookArr.add(i,b);
 				
-				whenIsDueDate(sc, bookTotal); //calculate duedate
-				writeBookFile(bookArr); //write objects to file
+				bookArr.add(b);
+//				whenIsDueDate(sc, bookTotal); //calculate duedate
+				writeBookFile(); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
 				System.out.println("over maximum. Try again.");
 				continue;
@@ -50,33 +59,24 @@ public class Book extends Library implements Policies,Serializable{
 		} //for end
 	} //readUserBook
 	
-	@Override
-	public void whenIsDueDate(Scanner sc, int bookTotal) {
-		System.out.print("How many days passed since borrowed? ");
-		int days = sc.nextInt();
-		howMuchFine(days, bookTotal);		
-	} //whenIsDueDate end
-
-	@Override
-	public void howMuchFine(int days, int bookTotal) {
-		int overdue = days-due;
-		if(days<=14) {
-			System.out.printf("Your due is %d days left.\n", overdue);
-		}else {
-			for(int i=0;i<bookTotal;i++) {
-				int totalFine = overdue*fine;
-				System.out.printf("Too late. Your fine will be %d $\n", totalFine);
-			} //for end
-		}//if-else end
-	} //howMuchFine end
-	@Override
-	void print() {
+	public static int getBookTotal() {
+		return bookTotal;
+	}
+		
+	public void printt() {
+		System.out.printf(" %s | %s | %s | %d |", categ, title, author, year);
+	}
+	
+	public static void printBook() { //printing book array
 		if(!(bookArr.isEmpty())) {
 			for(int i=0;i<bookArr.size();i++) {
-				bookArr.get(i).print();
+				bookArr.get(i).printt();
 			}
 		} else {
 			System.err.println("No book lists");
 		}
 	} //printBook end
+	
+	abstract void read(Scanner sc);
+	abstract void print();
 } //Book class end

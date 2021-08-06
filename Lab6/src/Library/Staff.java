@@ -1,5 +1,10 @@
 package Library;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * {@summary }
@@ -18,6 +23,7 @@ public class Staff extends User{
 	Staff(){}
 	
 	void readStaff(Scanner sc) { //reading staff's information from keyboard
+		super.PersonInfo(sc);
 		System.out.print("What is your staff id?: ");
 		id = sc.next();
 		System.out.print("floor?: ");
@@ -25,4 +31,25 @@ public class Staff extends User{
 		System.out.print("section?: ");
 		section = sc.next();
 	}
+	
+	void printStaff() {
+		System.out.printf("| %d | %s |\n", floor, section);
+	}
+	
+	void writeStaffFile(ArrayList<Staff> staffArr) { //writing new object to file
+		try {
+			FileOutputStream output = new FileOutputStream("staff.lib");
+			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
+		
+//			for(int i=0;i<staffArr.size();i++) {
+				objectOutput.writeObject(staffArr);
+//			}
+		
+			output.close();
+		} catch(FileNotFoundException fe){
+			System.err.println("File not found or file not accessible");
+		}catch(IOException ioe) {
+			System.err.println("Error writing file");
+		} //try-catch end
+	} //writeStaffFile end
 }

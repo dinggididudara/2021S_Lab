@@ -11,11 +11,10 @@ public class LibraryManagement{
 	public static void main(String[] args) {
 		int option;
 	
-	
 		Scanner sc = new Scanner(System.in);
 		System.out.print("What is the library's name? : ");
 		name = sc.next();
-	
+		
 		try {
 		while(true) {	
 			System.out.println("1. Add Staff or Member from keyboard, then add to file(.lib)");
@@ -30,17 +29,17 @@ public class LibraryManagement{
 					Library.readDetails(sc);
 					break;
 				case 2:
+					Library.openBookFile();
 					printBookTable();
-					Book.openBookFile();
-					Book.print();
+					Book.printBook();
 					break;
 				case 3:
 					printStaffTable();
-					Library.printDetailsStaff();
+					User.openStaffFile();
 					break;
 				case 4:
 					printMemberTable();
-					Library.printDetailsStaff();
+					User.openMemberFile();
 					break;
 				case 5:
 					sc.close();
@@ -64,7 +63,7 @@ public class LibraryManagement{
 	
 	public static void printStaffTable() {
 		printLibraryName();
-		System.out.println(" Name | Staff Id | Section | ");
+		System.out.println(" Name | Staff Id | Section |");
 	}
 	
 	public static void printMemberTable() {
