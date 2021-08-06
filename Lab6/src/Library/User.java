@@ -24,8 +24,7 @@ public class User extends Person implements Serializable{
 		return fname + " " + lname;
 	} //getName end
 	
-	@SuppressWarnings("unchecked")
-	static void openStaffFile() { //open staff file
+	@SuppressWarnings("unchecked") void openStaffFile() { //open staff file
 		try {			
 			ArrayList<Staff> staffArr = new ArrayList<Staff>();
 			FileInputStream inputStaff = new FileInputStream("staff.lib");
@@ -45,8 +44,7 @@ public class User extends Person implements Serializable{
 		} //try-catch end
 	} //openFile end
 	
-	@SuppressWarnings("unchecked")
-	static void openMemberFile() { //open member file
+	@SuppressWarnings("unchecked") void openMemberFile() { //open member file
 		try {		
 			ArrayList<Member> memberArr = new ArrayList<Member>();
 			FileInputStream inputStaff = new FileInputStream("src\\member.lib");

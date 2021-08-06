@@ -14,7 +14,8 @@ public class LibraryManagement{
 		Scanner sc = new Scanner(System.in);
 		System.out.print("What is the library's name? : ");
 		name = sc.next();
-		
+		Library l = new Library();
+		User u = new User();
 		try {
 		while(true) {	
 			System.out.println("1. Add Staff or Member from keyboard, then add to file(.lib)");
@@ -26,20 +27,19 @@ public class LibraryManagement{
 			option = sc.nextInt();
 			switch(option) {
 				case 1:
-					Library.readDetails(sc);
+					l.readDetails(sc);
 					break;
 				case 2:
-					Library.openBookFile();
 					printBookTable();
-					Book.printBook();
+					Book.openBookFile();
 					break;
 				case 3:
 					printStaffTable();
-					User.openStaffFile();
+					u.openStaffFile();
 					break;
 				case 4:
 					printMemberTable();
-					User.openMemberFile();
+					u.openMemberFile();
 					break;
 				case 5:
 					sc.close();

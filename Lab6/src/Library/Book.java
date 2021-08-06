@@ -1,6 +1,13 @@
 package Library;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * {@summary }
@@ -17,6 +24,8 @@ public abstract class Book extends Library implements Serializable{
 	protected String title;
 	protected String author;
 	protected int year;
+	
+	static ArrayList<Book> bookArr = new ArrayList<Book>();
 	
 	Book(){}
 	Book(String categ, String title, String author, int year){
@@ -50,7 +59,6 @@ public abstract class Book extends Library implements Serializable{
 				b.read(sc);
 				
 				bookArr.add(b);
-//				whenIsDueDate(sc, bookTotal); //calculate duedate
 				writeBookFile(); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
 				System.out.println("over maximum. Try again.");
@@ -64,7 +72,7 @@ public abstract class Book extends Library implements Serializable{
 	}
 		
 	public void printt() {
-		System.out.printf(" %s | %s | %s | %d |", categ, title, author, year);
+		System.out.printf(" %s | %s | %s | %d |\n", categ, title, author, year);
 	}
 	
 	public static void printBook() { //printing book array
@@ -76,6 +84,46 @@ public abstract class Book extends Library implements Serializable{
 			System.err.println("No book lists");
 		}
 	} //printBook end
+
+	@SuppressWarnings("unchecked")
+	static void openBookFile() { //open book file
+		try {
+			FileInputStream inputBook = new FileInputStream("library.lib");
+			ObjectInputStream objectInputBook = new ObjectInputStream(inputBook);
+			
+			bookArr = (ArrayList<Book>) objectInputBook.readObject();
+			
+			for(int i=0;i<bookArr.size();i++) { //print book list
+				bookArr.get(i).printt();
+			}
+		
+			
+			objectInputBook.close();
+		}catch(FileNotFoundException fe){
+			System.err.println("File not found or file not accessible");
+		}catch(ClassNotFoundException e) {
+			
+		}catch(IOException ioe) {
+			System.err.println("Error opening file");
+		} //try-catch end
+	} //openFile end
+	
+	static void writeBookFile() { //writing new object to file
+		try {
+			FileOutputStream outputBook = new FileOutputStream("src\\book.lib");
+			ObjectOutputStream objectOutputBook = new ObjectOutputStream(outputBook);
+		
+			for(int i=0;i<bookArr.size();i++) {
+				objectOutputBook.writeObject(bookArr.get(i));
+			}
+			
+			outputBook.close();
+		} catch(FileNotFoundException fe){
+			System.err.println("File not found or file not accessible");
+		}catch(IOException ioe) {
+			System.err.println("Error writing file");
+		} //try-catch end
+	} //writeBookFile end
 	
 	abstract void read(Scanner sc);
 	abstract void print();
