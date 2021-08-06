@@ -19,9 +19,9 @@ public class Member extends User implements Policies, Serializable{
 	private static final long serialVersionUID = 1L;
 	String id; //member's id
 	int age;
-	int bookTotal;
 	int overdue;
 	int totalFine;
+	static int bookTotal;
 	
 	Member() {}
 	
@@ -32,19 +32,23 @@ public class Member extends User implements Policies, Serializable{
 		id = sc.next();
 		System.out.print("What is your age?: ");
 		age = sc.nextInt();
-		Book b = new Book();
-		b.readBook(sc);
+
+		System.out.print("How many books did you borrow?: ");
+		bookTotal = sc.nextInt();
+		Book.readBook(sc);
 		whenIsDueDate(sc, bookTotal);		
 	} //readMember end
+	
+	public static int getBookTotal() {return bookTotal;}
 	
 	@Override
 	void print() {
 		super.print();
-		System.out.printf(" %6s | %5d | %3d days | $%3d |\n", id, bookTotal, overdue, totalFine);
+		System.out.printf(" %9s | %5d | %2d days | $%3d |\n", id, getBookTotal(), overdue, totalFine); //fix book total copy to book class somewhr
 	} //print end
 	
 	@Override
-	public int whenIsDueDate(Scanner sc, int bookTotal) {
+	public void whenIsDueDate(Scanner sc, int bookTotal) {
 		System.out.print("How many days passed since borrowed? ");
 		int days = sc.nextInt();
 		overdue = days-due;
@@ -52,17 +56,12 @@ public class Member extends User implements Policies, Serializable{
 			System.out.printf("Overdue : %d day(s).\n", overdue);
 		}
 		howMuchFine(overdue, bookTotal);
-		
-		return overdue;
 	} //whenIsDueDate end
 
 	@Override
-	public int howMuchFine(int overdue, int bookTotal) {
-		totalFine = overdue*fine;
-		for(int i=0;i<bookTotal;i++) {
-			System.out.printf("Too late. Your fine will be $ %d \n", totalFine);
-		}// for end
-		return totalFine;
+	public void howMuchFine(int overdue, int bookTotal) {
+		totalFine = overdue*fine*bookTotal; //total fine
+		System.out.printf("Too late. Your fine will be $ %d \n", totalFine);
 	} //howMuchFine end
 	
 	void writeMemberFile(ArrayList<Member> memberArr) { //writing new object to file

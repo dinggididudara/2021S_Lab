@@ -12,6 +12,6 @@ public interface Policies {
 	final int maxBooks = 5; //maximum 5 books they can borrow
 	final int due = 14; //due date is 14 days
 	
-	abstract int whenIsDueDate(Scanner sc, int bookTotal);
-	abstract int howMuchFine(int days, int bookTotal);
+	abstract void whenIsDueDate(Scanner sc, int bookTotal);
+	abstract void howMuchFine(int days, int bookTotal);
 }

@@ -17,13 +17,11 @@ public class Biography extends NonFiction implements Serializable{
 	String author;
 	int year;
 	@Override
-	public void readBook(Scanner sc) {
+	public void readBooks(Scanner sc) {
 		System.out.println("Title:");
 		title = sc.nextLine();
-		sc.nextLine();
 		System.out.println("Author:");
 		author = sc.nextLine();
-		sc.nextLine();
 		System.out.print("Year: ");
 		year = sc.nextInt();
 	} //read end

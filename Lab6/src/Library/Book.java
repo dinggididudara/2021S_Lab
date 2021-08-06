@@ -14,30 +14,27 @@ import java.util.Scanner;
  * 
  *
  */
-public class Book implements Serializable{
+public abstract class Book implements Serializable{
 	private static final long serialVersionUID = 1L;
-	protected String categ;
-	int bookTotal;
-	
-	
+	protected String categ;	
 	
 	Book(){}
 	
-	void print(){
-		System.out.printf("%d |", bookTotal);
-	}
+	abstract void print(); //abstract method for sub classes
+	abstract void readBooks(Scanner sc);
 	
-	public void readBook(Scanner sc) {
-		System.out.print("How many books did you borrow?: ");
-		bookTotal = sc.nextInt();
-		readBook2(sc, bookTotal);
-	} //read end
+//	public void readBook(Scanner sc) {
+////		System.out.print("How many books did you borrow?: ");
+////		int bookTotal = sc.nextInt();
+//		readBook2(sc);
+//	} //read end
 	
-	public void readBook2(Scanner sc, int bookTotal) {
-		 ArrayList<Book> bookArr = new ArrayList<Book>();
+	public static void readBook(Scanner sc) {
+		int bookTotal = Member.getBookTotal();
+		 ArrayList<Book> bookArr = new ArrayList<Book>(bookTotal);
 		for(int i=0;i<bookTotal;i++) { //add books
 			if(bookTotal <= 5) {
-				Book b = new Book();
+				Book b;
 				System.out.printf("information of book no.%d\n", (i+1));
 				System.out.println("1. Fiction\n2. Non-fiction");
 				System.out.print("Book's category?: ");
@@ -53,8 +50,8 @@ public class Book implements Serializable{
 					System.out.println("Wrong type! Please try again.");
 					continue;
 				} //switch-case end
-				b.readBook(sc);
-				bookArr.add(i, b);
+				b.readBooks(sc);
+				bookArr.add(b);
 				b.writeBookFile(bookArr); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
 				System.out.println("over maximum. Try again.");
@@ -74,7 +71,7 @@ public class Book implements Serializable{
 			
 			if(!(bookArr.isEmpty())) {
 				for(int i=0;i<bookArr.size();i++) {
-					bookArr.get(i).print();
+					bookArr.get(i).print(); //print book's information
 				}
 			} else {
 				System.err.println("No book lists");

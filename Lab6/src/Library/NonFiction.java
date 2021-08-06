@@ -17,7 +17,7 @@ public class NonFiction extends Book implements Serializable{
 	NonFiction nf;
 
 	@Override
-	public void readBook(Scanner sc) {
+	public void readBooks(Scanner sc) {
 		System.out.println("1. Science\n2. Biography\n3. History");
 		System.out.print(":: ");
 		categ = sc.next();
@@ -40,7 +40,7 @@ public class NonFiction extends Book implements Serializable{
 			default:
 				System.out.println("Wrong type! Try again");
 			} //switch-case end
-			nf.readBook(sc);
+			nf.readBooks(sc);
 	} //read end
 
 //	@Override

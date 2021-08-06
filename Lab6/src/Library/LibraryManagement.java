@@ -62,27 +62,39 @@ public class LibraryManagement implements Serializable{
 		} catch(Exception e) {
 			System.err.println("please try again");
 		} //try-catch end
-		
 	} //main end
 	
-	public static void printLibraryName() {
-		System.out.printf("%15s Library\n", name);
-		System.out.println("***************************************");
-	} //print end
-	
 	public static void printStaffTable() {
-		printLibraryName();
-		System.out.println("    Name    |    email    | phone number | Staff Id | Section |");
+		System.out.println("");
+		System.out.printf("\t \t \t%s Library\n", name); 
+		for(int i=0;i<67;i++) {
+			System.out.print("*");
+			} //for end
+		System.out.println("");
+		System.out.println("\t \t \t Staff List\n");
+		System.out.println("      Name      |    email    | phone Number | Staff Id | Section |");
 	}
 	
 	public static void printMemberTable() {
-		printLibraryName();
-		System.out.println("    Name    |    email    | phoneNumber | Member Id | Books | OverDue | Fine |");
+		System.out.println("");
+		System.out.printf("\t \t \t \t%s Library\n", name);
+		for(int i=0;i<83;i++) {
+			System.out.print("*");
+			} //for end
+		System.out.println("");
+		System.out.println("\t \t \t \t Member List\n");
+		System.out.println("      Name      |    email    | phone Number | Member Id | Books | OverDue | Fine |");
 	}
 	
 	public static void printBookTable() {
-		printLibraryName();
-		System.out.println("Category | Title | Author | Year |");
+		System.out.println("");
+		System.out.printf("\t \t%s Library\n", name);
+		for(int i=0;i<40;i++) {
+			System.out.print("*");
+			} //for end
+		System.out.println("");
+		System.out.println("\t \t Book List\n");
+		System.out.println(" Category |  Title  |  Author  | Year |");
 	}
 
 } //LibraryManagement class end

@@ -17,14 +17,12 @@ public class History extends NonFiction implements Serializable{
 	int year;
 	
 	@Override
-	public void readBook(Scanner sc){
+	public void readBooks(Scanner sc){
 		System.out.println("Title:");
 		title = sc.nextLine();
-		sc.nextLine();
 		System.out.println("Author:");
 		author = sc.nextLine();
-		sc.nextLine();
-		System.out.print("Year: ");
+		System.out.print("Year:");
 		year = sc.nextInt();
 	}
 	

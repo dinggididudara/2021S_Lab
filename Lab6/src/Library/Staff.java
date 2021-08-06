@@ -58,6 +58,6 @@ public class Staff extends User implements Serializable{
 	@Override
 	void print() {
 		super.print();
-		System.out.printf(" %5s | %5s |\n",id, section); //error
+		System.out.printf(" %8s | %7s |\n",id, section); //error
 	}
 }

@@ -88,6 +88,6 @@ public class User extends Person implements Serializable{
 
 	@Override
 	void print() { //print personal information, common instance staff and member
-		System.out.printf(" %10s | %10s | %10d |", getName(), email, phoneNumber);
+		System.out.printf(" %14s | %11s | %12d |", getName(), email, phoneNumber);
 	}
 } //User class end

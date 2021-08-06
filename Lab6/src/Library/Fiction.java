@@ -13,7 +13,7 @@ public class Fiction extends Book implements Serializable{
 	Fiction f;
 	
 	@Override
-	public void readBook(Scanner sc) {
+	public void readBooks(Scanner sc) {
 		System.out.println("1. Comic\n2. Fantasy");
 		System.out.print(":: ");
 		categ = sc.next();
@@ -33,7 +33,7 @@ public class Fiction extends Book implements Serializable{
 			System.out.println("Wrong type! Try again");
 //			continue;
 		} //switch-case end 
-		f.readBook(sc);
+		f.readBooks(sc);
 	} //read end
 	@Override
 	void print() {
