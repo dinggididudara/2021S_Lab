@@ -9,14 +9,14 @@ import java.util.Scanner;
  * 
  *
  */
-public class Library extends LibraryManagement implements Serializable{ //storing users and books info
+public class Library implements Serializable{ //storing users and books info
 
-	private static final long serialVersionUID = 6408272688595037091L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	
 	static ArrayList<Staff> staffArr = new ArrayList<Staff>();
 	static ArrayList<Member> memberArr = new ArrayList<Member>();
 	
-	void readDetails(Scanner sc) { //ask staff or member
+	void read(Scanner sc) { //ask staff or member
 		System.out.print("how many people will you write? ");
 		int num = sc.nextInt();
 		for(int i=0;i<num;i++) {
@@ -32,7 +32,6 @@ public class Library extends LibraryManagement implements Serializable{ //storin
 			case 2: //if member
 				Member m = new Member();
 				m.readMember(sc);
-				m.whenIsDue(sc);
 				memberArr.add(i,m);
 				m.writeMemberFile(memberArr);
 				break;

@@ -11,13 +11,13 @@ public class Comic extends Fiction{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5109869931526147556L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	String title;
 	String author;
 	int year;
 	
 	@Override
-	void read(Scanner sc) {
+	public void read(Scanner sc) {
 		System.out.print("Title: ");
 		title = sc.next();
 		System.out.print("Author: ");

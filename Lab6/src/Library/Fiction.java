@@ -10,12 +10,12 @@ public class Fiction extends Book{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5728945184196674919L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	String categ;
 	Fiction f;
 	
 	@Override
-	void read(Scanner sc) {
+	public void read(Scanner sc) {
 		System.out.println("1. Comic\n2. Fantasy");
 		categ = sc.next();
 		switch(categ) {

@@ -17,7 +17,7 @@ public class Fantasy extends Fiction{
 	int year;
 	
 	@Override
-	void read(Scanner sc) {
+	public void read(Scanner sc) {
 		System.out.print("Title: ");
 		title = sc.next();
 		System.out.print("Author: ");

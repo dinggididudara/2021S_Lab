@@ -11,12 +11,12 @@ public class Biography extends NonFiction{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8805257141838469923L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	String title;
 	String author;
 	int year;
 	@Override
-	void read(Scanner sc) {
+	public void read(Scanner sc) {
 		System.out.print("Title: ");
 		title = sc.next();
 		System.out.print("Author: ");

@@ -15,7 +15,7 @@ public class Staff extends User{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6348620923416425668L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	String id; //staff id
 	int floor;
 	String section;

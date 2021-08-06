@@ -14,15 +14,16 @@ import java.util.Scanner;
  * 
  *
  */
-public class Book extends Library implements Serializable{
+public class Book implements Serializable{
 	/**
 	 * serial id for object writer
 	 */
-	private static final long serialVersionUID = 7305354794360305675L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	protected String categ;
 	protected String title;
 	protected String author;
 	protected int year;
+	int bookTotal;
 	
 	static ArrayList<Book> bookArr = new ArrayList<Book>();
 	
@@ -35,22 +36,26 @@ public class Book extends Library implements Serializable{
 		this.year = year;
 	}
 
-	public static void read(Scanner sc) {
-		Book b;
+	public void read(Scanner sc) {
 		System.out.print("How many books did you borrow?: ");
-		int bookTotal = sc.nextInt();
+		bookTotal = sc.nextInt();
+		readBook(sc, bookTotal);
+	} //read end
+	
+	public void readBook(Scanner sc, int bookTotal) {
 		for(int i=0;i<bookTotal;i++) { //add books
 			if(bookTotal <= 5) {
+				Book b = new Book();
 				System.out.printf("information of book no.%d\n", (i+1));
 				System.out.println("1. Fiction\n2. Non-fiction");
 				System.out.print("Book's category?: ");
 				int cate = sc.nextInt();
 				switch(cate) {
 				case 1:
-					b = new Fiction(sc);;
+					b = new Fiction();;
 					break;
 				case 2:
-					b = new NonFiction(sc);
+					b = new NonFiction();
 					break;
 				default:
 					System.out.println("Wrong type! Please try again.");
@@ -63,7 +68,7 @@ public class Book extends Library implements Serializable{
 				continue;
 			} //if-else end
 		} //for end
-	} //readUserBook
+	}
 		
 	public void printt() {
 		System.out.printf(" %s | %s | %s | %d |\n", categ, title, author, year);

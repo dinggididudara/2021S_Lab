@@ -11,11 +11,12 @@ public class NonFiction extends Book{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1804399582950691688L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	String categ;
 	NonFiction nf;
-	
-	NonFiction(Scanner sc){
+
+	@Override
+	public void read(Scanner sc) {
 		System.out.println("1. Science\n2. Biography\n3. History");
 		System.out.print(":: ");
 		categ = sc.next();
@@ -39,10 +40,6 @@ public class NonFiction extends Book{
 //				continue;
 			} //switch-case end
 			nf.read(sc);
-	}
-//	@Override
-	void read(Scanner sc) {
-		
 	} //read end
 
 //	@Override

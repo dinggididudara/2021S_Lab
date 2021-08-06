@@ -27,7 +27,7 @@ public class LibraryManagement{
 			option = sc.nextInt();
 			switch(option) {
 				case 1:
-					l.readDetails(sc);
+					l.read(sc);
 					break;
 				case 2:
 					printBookTable();
@@ -75,4 +75,5 @@ public class LibraryManagement{
 		printLibraryName();
 		System.out.println("Category | Title | Author | Year |");
 	}
+
 } //LibraryManagement class end

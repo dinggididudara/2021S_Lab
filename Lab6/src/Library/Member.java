@@ -15,9 +15,12 @@ public class Member extends User implements Policies{
 	/**
 	 * serial id for object writing
 	 */
-	private static final long serialVersionUID = 7059470493805464799L;
+	private static final long serialVersionUID = 5959835822560038222L;
 	String id; //member's id
 	int age;
+	int bookTotal;
+	int overdue;
+	int totalFine;
 	
 	Member() {}
 	Member(String name, String id, int bookTotal, int overdue, int totalFine){
@@ -34,8 +37,9 @@ public class Member extends User implements Policies{
 		id = sc.next();
 		System.out.print("What is your age?: ");
 		age = sc.nextInt();
-		Book.read(sc);
-		whenIsDueDate(sc,Book.getBookTotal());
+		Book b = new Book();
+		b.read(sc);
+		whenIsDueDate(sc, bookTotal);
 	} //readMember end
 	
 	void printMember() {
@@ -46,16 +50,16 @@ public class Member extends User implements Policies{
 	public int whenIsDueDate(Scanner sc, int bookTotal) {
 		System.out.print("How many days passed since borrowed? ");
 		int days = sc.nextInt();
-		int overdue = days-due;
+		overdue = days-due;
 		howMuchFine(overdue, bookTotal);
 		return overdue;
 	} //whenIsDueDate end
 
 	@Override
 	public int howMuchFine(int overdue, int bookTotal) {
-		int totalFine = overdue*fine;
+		totalFine = overdue*fine;
 		if(overdue<=14) {
-			System.out.printf("Your due is %d days left.\n", overdue);
+			System.out.printf("Overdue : %d day(s).\n", overdue);
 		}else {
 			for(int i=0;i<bookTotal;i++) {
 				System.out.printf("Too late. Your fine will be %d $\n", totalFine);
@@ -66,11 +70,11 @@ public class Member extends User implements Policies{
 	
 	void writeMemberFile(ArrayList<Member> memberArr) { //writing new object to file
 		try {
-			FileOutputStream output = new FileOutputStream("src\\member.lib");
+			FileOutputStream output = new FileOutputStream("member.lib");
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
-		
+			
 			for(int i=0;i<memberArr.size();i++) {
-				objectOutput.writeObject(new Member(memberArr.get(i).getName(), memberArr.get(i).id,memberArr.get(i).getBookTotal(), memberArr.get(i).totalFine));
+				objectOutput.writeObject(new Member(memberArr.get(i).getName(), memberArr.get(i).id, memberArr.get(i).bookTotal, memberArr.get(i).overdue, memberArr.get(i).totalFine));
 			}
 		
 			output.close();

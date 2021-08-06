@@ -24,7 +24,8 @@ public class User extends Person implements Serializable{
 		return fname + " " + lname;
 	} //getName end
 	
-	@SuppressWarnings("unchecked") void openStaffFile() { //open staff file
+	@SuppressWarnings("unchecked") 
+	void openStaffFile() { //open staff file
 		try {			
 			ArrayList<Staff> staffArr = new ArrayList<Staff>();
 			FileInputStream inputStaff = new FileInputStream("staff.lib");
@@ -33,6 +34,7 @@ public class User extends Person implements Serializable{
 			for(int i=0;i<staffArr.size();i++){
 				staffArr = (ArrayList<Staff>) objectInputStaff.readObject();
 			}
+			
 			printDetailsStaff(staffArr);
 			objectInputStaff.close();
 		}catch(FileNotFoundException fe){
