@@ -61,6 +61,7 @@ public class Book implements Serializable{
 					System.out.println("Wrong type! Please try again.");
 					continue;
 				} //switch-case end
+				b.read(sc);
 				bookArr.add(i, b);
 				writeBookFile(); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
@@ -84,15 +85,14 @@ public class Book implements Serializable{
 		}
 	} //printBook end
 
-	@SuppressWarnings("unchecked")
 	static void openBookFile() { //open book file
 		try {
 			FileInputStream inputBook = new FileInputStream("book.lib");
 			ObjectInputStream objectInputBook = new ObjectInputStream(inputBook);
 			
-			bookArr = (ArrayList<Book>) objectInputBook.readObject();
+			bookArr.add((Book) objectInputBook.readObject());
 			
-			for(int i=0;i<bookArr.size();i++) { //print book list
+			for(int i=0;i<bookArr.size();i++) { //print book lists
 				bookArr.get(i).printt();
 			}
 		
@@ -113,7 +113,7 @@ public class Book implements Serializable{
 			ObjectOutputStream objectOutputBook = new ObjectOutputStream(outputBook);
 		
 			for(int i=0;i<bookArr.size();i++) {
-				objectOutputBook.writeObject(new Book(bookArr.get(i).categ, bookArr.get(i).title, bookArr.get(i).author, bookArr.get(i).year));
+				objectOutputBook.writeObject(bookArr.get(i));
 			}
 			
 			outputBook.close();

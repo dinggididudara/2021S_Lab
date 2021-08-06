@@ -15,9 +15,9 @@ public class LibraryManagement{
 		System.out.print("What is the library's name? : ");
 		name = sc.next();
 		Library l = new Library();
-		User u = new User();
+		
 		try {
-		while(true) {	
+		while(true) {	//print options
 			System.out.println("1. Add Staff or Member from keyboard, then add to file(.lib)");
 			System.out.println("2. Print Book lists");
 			System.out.println("3. Print staff's information");
@@ -25,6 +25,7 @@ public class LibraryManagement{
 			System.out.println("5. Exit");
 			System.out.print("Choose your option: ");
 			option = sc.nextInt();
+			User u = new User();
 			switch(option) {
 				case 1:
 					l.read(sc);

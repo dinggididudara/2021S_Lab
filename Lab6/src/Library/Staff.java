@@ -21,7 +21,8 @@ public class Staff extends User{
 	String section;
 	
 	Staff(){}
-	Staff(String id, int floor, String section){
+	Staff(String name, String id, int floor, String section){
+		name = getName();
 		this.id = id;
 		this.floor = floor;
 		this.section = section;
@@ -38,7 +39,7 @@ public class Staff extends User{
 	}
 	
 	void printStaff() {
-		System.out.printf("| %d | %s |\n", floor, section);
+		System.out.printf("%d | %s |\n",id, section);
 	}
 	
 	void writeStaffFile(ArrayList<Staff> staffArr) { //writing new object to file
@@ -48,7 +49,7 @@ public class Staff extends User{
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 		
 			for(int i=0;i<staffArr.size();i++) {
-				objectOutput.writeObject(new Staff(staffArr.get(i).id, staffArr.get(i).floor, staffArr.get(i).section));
+				objectOutput.writeObject(staffArr.get(i));
 			}
 		
 			output.close();

@@ -51,20 +51,20 @@ public class Member extends User implements Policies{
 		System.out.print("How many days passed since borrowed? ");
 		int days = sc.nextInt();
 		overdue = days-due;
+		if(overdue<=14) {
+			System.out.printf("Overdue : %d day(s).\n", overdue);
+		}
 		howMuchFine(overdue, bookTotal);
+		
 		return overdue;
 	} //whenIsDueDate end
 
 	@Override
 	public int howMuchFine(int overdue, int bookTotal) {
 		totalFine = overdue*fine;
-		if(overdue<=14) {
-			System.out.printf("Overdue : %d day(s).\n", overdue);
-		}else {
-			for(int i=0;i<bookTotal;i++) {
-				System.out.printf("Too late. Your fine will be %d $\n", totalFine);
-			} //for end
-		}//if-else end
+		for(int i=0;i<bookTotal;i++) {
+			System.out.printf("Too late. Your fine will be %d $\n", totalFine);
+		}// for end
 		return totalFine;
 	} //howMuchFine end
 	
@@ -74,7 +74,7 @@ public class Member extends User implements Policies{
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 			
 			for(int i=0;i<memberArr.size();i++) {
-				objectOutput.writeObject(new Member(memberArr.get(i).getName(), memberArr.get(i).id, memberArr.get(i).bookTotal, memberArr.get(i).overdue, memberArr.get(i).totalFine));
+				objectOutput.writeObject(memberArr.get(i));
 			}
 		
 			output.close();

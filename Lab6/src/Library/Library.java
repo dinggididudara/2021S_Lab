@@ -26,13 +26,13 @@ public class Library implements Serializable{ //storing users and books info
 			case 1: //if staff
 				Staff s = new Staff();
 				s.readStaff(sc);
-				staffArr.add(i,s);
+				staffArr.add(s);
 				s.writeStaffFile(staffArr);
 				break;
 			case 2: //if member
 				Member m = new Member();
 				m.readMember(sc);
-				memberArr.add(i,m);
+				memberArr.add(m);
 				m.writeMemberFile(memberArr);
 				break;
 			default:

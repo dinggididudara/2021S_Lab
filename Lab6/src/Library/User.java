@@ -24,18 +24,15 @@ public class User extends Person implements Serializable{
 		return fname + " " + lname;
 	} //getName end
 	
-	@SuppressWarnings("unchecked") 
 	void openStaffFile() { //open staff file
 		try {			
 			ArrayList<Staff> staffArr = new ArrayList<Staff>();
 			FileInputStream inputStaff = new FileInputStream("staff.lib");
 			ObjectInputStream objectInputStaff = new ObjectInputStream(inputStaff);
 			
-			for(int i=0;i<staffArr.size();i++){
-				staffArr = (ArrayList<Staff>) objectInputStaff.readObject();
-			}
-			
+			staffArr.add((Staff)objectInputStaff.readObject());
 			printDetailsStaff(staffArr);
+			
 			objectInputStaff.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
@@ -43,20 +40,21 @@ public class User extends Person implements Serializable{
 			
 		}catch(IOException ioe) {
 			System.err.println("Error opening file");
-		} //try-catch end
+		}//try-catch end
 	} //openFile end
 	
-	@SuppressWarnings("unchecked") 
 	void openMemberFile() { //open member file
 		try {		
 			ArrayList<Member> memberArr = new ArrayList<Member>();
-			FileInputStream inputStaff = new FileInputStream("src\\member.lib");
+			FileInputStream inputStaff = new FileInputStream("member.lib");
 			ObjectInputStream objectInputMember = new ObjectInputStream(inputStaff);
 			
-			for(int i=0;i<memberArr.size();i++) {
-				memberArr = (ArrayList<Member>) objectInputMember.readObject();
-			}
-			printDetailsMember(memberArr);
+//			for(int i=0;i<100;i++) {
+//				memberArr = (ArrayList<Member>) objectInputMember.readObject();
+				memberArr.add((Member) objectInputMember.readObject());
+				printDetailsMember(memberArr);
+//			}
+			
 			objectInputMember.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
