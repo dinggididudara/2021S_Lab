@@ -26,7 +26,7 @@ public class Comic extends Fiction{
 		year = sc.nextInt();
 	} //read end
 	
-	@Override
+//	@Override
 	void print() {
 		System.out.printf("| %20s | %20s | %5s", title, author, year);
 	} //print end

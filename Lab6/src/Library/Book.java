@@ -14,12 +14,11 @@ import java.util.Scanner;
  * 
  *
  */
-public abstract class Book extends Library implements Serializable{
+public class Book extends Library implements Serializable{
 	/**
 	 * serial id for object writer
 	 */
 	private static final long serialVersionUID = 7305354794360305675L;
-	protected static int bookTotal;
 	protected String categ;
 	protected String title;
 	protected String author;
@@ -28,6 +27,7 @@ public abstract class Book extends Library implements Serializable{
 	static ArrayList<Book> bookArr = new ArrayList<Book>();
 	
 	Book(){}
+	
 	Book(String categ, String title, String author, int year){
 		this.categ = categ;
 		this.title = title;
@@ -35,10 +35,10 @@ public abstract class Book extends Library implements Serializable{
 		this.year = year;
 	}
 
-	public static void readBook(Scanner sc) {
+	public static void read(Scanner sc) {
 		Book b;
 		System.out.print("How many books did you borrow?: ");
-		bookTotal = sc.nextInt();
+		int bookTotal = sc.nextInt();
 		for(int i=0;i<bookTotal;i++) { //add books
 			if(bookTotal <= 5) {
 				System.out.printf("information of book no.%d\n", (i+1));
@@ -47,18 +47,16 @@ public abstract class Book extends Library implements Serializable{
 				int cate = sc.nextInt();
 				switch(cate) {
 				case 1:
-					b = new Fiction();
+					b = new Fiction(sc);;
 					break;
 				case 2:
-					b = new NonFiction();
+					b = new NonFiction(sc);
 					break;
 				default:
 					System.out.println("Wrong type! Please try again.");
 					continue;
 				} //switch-case end
-				b.read(sc);
-				
-				bookArr.add(b);
+				bookArr.add(i, b);
 				writeBookFile(); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
 				System.out.println("over maximum. Try again.");
@@ -66,10 +64,6 @@ public abstract class Book extends Library implements Serializable{
 			} //if-else end
 		} //for end
 	} //readUserBook
-	
-	public static int getBookTotal() {
-		return bookTotal;
-	}
 		
 	public void printt() {
 		System.out.printf(" %s | %s | %s | %d |\n", categ, title, author, year);
@@ -88,7 +82,7 @@ public abstract class Book extends Library implements Serializable{
 	@SuppressWarnings("unchecked")
 	static void openBookFile() { //open book file
 		try {
-			FileInputStream inputBook = new FileInputStream("library.lib");
+			FileInputStream inputBook = new FileInputStream("book.lib");
 			ObjectInputStream objectInputBook = new ObjectInputStream(inputBook);
 			
 			bookArr = (ArrayList<Book>) objectInputBook.readObject();
@@ -110,11 +104,11 @@ public abstract class Book extends Library implements Serializable{
 	
 	static void writeBookFile() { //writing new object to file
 		try {
-			FileOutputStream outputBook = new FileOutputStream("src\\book.lib");
+			FileOutputStream outputBook = new FileOutputStream("book.lib");
 			ObjectOutputStream objectOutputBook = new ObjectOutputStream(outputBook);
 		
 			for(int i=0;i<bookArr.size();i++) {
-				objectOutputBook.writeObject(bookArr.get(i));
+				objectOutputBook.writeObject(new Book(bookArr.get(i).categ, bookArr.get(i).title, bookArr.get(i).author, bookArr.get(i).year));
 			}
 			
 			outputBook.close();
@@ -123,8 +117,7 @@ public abstract class Book extends Library implements Serializable{
 		}catch(IOException ioe) {
 			System.err.println("Error writing file");
 		} //try-catch end
-	} //writeBookFile end
-	
-	abstract void read(Scanner sc);
-	abstract void print();
+	} //writeBookFile end	
+//	abstract void read(Scanner sc);
+//	abstract void print();
 } //Book class end

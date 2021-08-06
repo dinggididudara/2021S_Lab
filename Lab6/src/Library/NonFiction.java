@@ -15,8 +15,7 @@ public class NonFiction extends Book{
 	String categ;
 	NonFiction nf;
 	
-	@Override
-	void read(Scanner sc) {
+	NonFiction(Scanner sc){
 		System.out.println("1. Science\n2. Biography\n3. History");
 		System.out.print(":: ");
 		categ = sc.next();
@@ -40,9 +39,13 @@ public class NonFiction extends Book{
 //				continue;
 			} //switch-case end
 			nf.read(sc);
+	}
+//	@Override
+	void read(Scanner sc) {
+		
 	} //read end
 
-	@Override
+//	@Override
 	void print() {
 		System.out.printf(" %10s", categ);
 	} //print end

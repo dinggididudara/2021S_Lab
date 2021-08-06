@@ -20,6 +20,13 @@ public class Member extends User implements Policies{
 	int age;
 	
 	Member() {}
+	Member(String name, String id, int bookTotal, int overdue, int totalFine){
+		name = getName();
+		this.id = id;
+		this.bookTotal = bookTotal;
+		this.overdue = overdue;
+		this.totalFine = totalFine;
+	}
 	
 	void readMember(Scanner sc) {
 		super.PersonInfo(sc);
@@ -27,7 +34,7 @@ public class Member extends User implements Policies{
 		id = sc.next();
 		System.out.print("What is your age?: ");
 		age = sc.nextInt();
-		Book.readBook(sc);
+		Book.read(sc);
 		whenIsDueDate(sc,Book.getBookTotal());
 	} //readMember end
 	
@@ -36,21 +43,21 @@ public class Member extends User implements Policies{
 	}
 	
 	@Override
-	public void whenIsDueDate(Scanner sc, int bookTotal) {
+	public int whenIsDueDate(Scanner sc, int bookTotal) {
 		System.out.print("How many days passed since borrowed? ");
 		int days = sc.nextInt();
-		howMuchFine(days, bookTotal);
+		int overdue = days-due;
+		howMuchFine(overdue, bookTotal);
+		return overdue;
 	} //whenIsDueDate end
 
 	@Override
-	public int howMuchFine(int days, int bookTotal) {
-		int overdue = days-due;
+	public int howMuchFine(int overdue, int bookTotal) {
 		int totalFine = overdue*fine;
-		if(days<=14) {
+		if(overdue<=14) {
 			System.out.printf("Your due is %d days left.\n", overdue);
 		}else {
 			for(int i=0;i<bookTotal;i++) {
-				
 				System.out.printf("Too late. Your fine will be %d $\n", totalFine);
 			} //for end
 		}//if-else end
@@ -63,7 +70,7 @@ public class Member extends User implements Policies{
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 		
 			for(int i=0;i<memberArr.size();i++) {
-				objectOutput.writeObject(memberArr.get(i));
+				objectOutput.writeObject(new Member(memberArr.get(i).getName(), memberArr.get(i).id,memberArr.get(i).getBookTotal(), memberArr.get(i).totalFine));
 			}
 		
 			output.close();

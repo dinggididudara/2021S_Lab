@@ -44,7 +44,8 @@ public class User extends Person implements Serializable{
 		} //try-catch end
 	} //openFile end
 	
-	@SuppressWarnings("unchecked") void openMemberFile() { //open member file
+	@SuppressWarnings("unchecked") 
+	void openMemberFile() { //open member file
 		try {		
 			ArrayList<Member> memberArr = new ArrayList<Member>();
 			FileInputStream inputStaff = new FileInputStream("src\\member.lib");

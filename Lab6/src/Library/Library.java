@@ -32,6 +32,7 @@ public class Library extends LibraryManagement implements Serializable{ //storin
 			case 2: //if member
 				Member m = new Member();
 				m.readMember(sc);
+				m.whenIsDue(sc);
 				memberArr.add(i,m);
 				m.writeMemberFile(memberArr);
 				break;

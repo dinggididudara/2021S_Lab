@@ -21,6 +21,11 @@ public class Staff extends User{
 	String section;
 	
 	Staff(){}
+	Staff(String id, int floor, String section){
+		this.id = id;
+		this.floor = floor;
+		this.section = section;
+	}
 	
 	void readStaff(Scanner sc) { //reading staff's information from keyboard
 		super.PersonInfo(sc);
@@ -38,12 +43,13 @@ public class Staff extends User{
 	
 	void writeStaffFile(ArrayList<Staff> staffArr) { //writing new object to file
 		try {
+			
 			FileOutputStream output = new FileOutputStream("staff.lib");
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 		
-//			for(int i=0;i<staffArr.size();i++) {
-				objectOutput.writeObject(staffArr);
-//			}
+			for(int i=0;i<staffArr.size();i++) {
+				objectOutput.writeObject(new Staff(staffArr.get(i).id, staffArr.get(i).floor, staffArr.get(i).section));
+			}
 		
 			output.close();
 		} catch(FileNotFoundException fe){
