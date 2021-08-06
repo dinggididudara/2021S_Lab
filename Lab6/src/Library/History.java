@@ -1,12 +1,13 @@
 package Library;
 
+import java.io.Serializable;
 import java.util.Scanner;
 /**
  * {@summary }
  * 
  *
  */
-public class History extends NonFiction{
+public class History extends NonFiction implements Serializable{
 	/**
 	 * 
 	 */
@@ -17,16 +18,19 @@ public class History extends NonFiction{
 	
 	@Override
 	public void readBook(Scanner sc){
-		System.out.print("Title: ");
-		title = sc.next();
-		System.out.print("Author: ");
-		author = sc.next();
+		System.out.println("Title:");
+		title = sc.nextLine();
+		sc.nextLine();
+		System.out.println("Author:");
+		author = sc.nextLine();
+		sc.nextLine();
 		System.out.print("Year: ");
 		year = sc.nextInt();
 	}
 	
 	@Override
 	void print() {
-		System.out.printf("| %20s | %20s | %5s", title, author, year);
+		super.print();
+		System.out.printf("| %20s | %20s | %5s \n", title, author, year);
 	}
 }

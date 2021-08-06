@@ -4,13 +4,15 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * {@summary Member class : implements Policies, get member's information}
  * 
  *
  */
-public class Member extends User implements Policies{
+public class Member extends User implements Policies, Serializable{
 	/**
 	 * serial id for object writing
 	 */
@@ -22,15 +24,9 @@ public class Member extends User implements Policies{
 	int totalFine;
 	
 	Member() {}
-	Member(String name, String id, int bookTotal, int overdue, int totalFine){
-		name = getName();
-		this.id = id;
-		this.bookTotal = bookTotal;
-		this.overdue = overdue;
-		this.totalFine = totalFine;
-	}
-
-	void readMember(Scanner sc) {
+	
+	@Override
+	void read(Scanner sc) {
 		super.PersonInfo(sc);
 		System.out.print("What is your member id?: ");
 		id = sc.next();
@@ -41,7 +37,11 @@ public class Member extends User implements Policies{
 		whenIsDueDate(sc, bookTotal);		
 	} //readMember end
 	
-	public String getId() {return id;}
+	@Override
+	void print() {
+		super.print();
+		System.out.printf(" %6s | %5d | %3d days | $%3d |\n", id, bookTotal, overdue, totalFine);
+	} //print end
 	
 	@Override
 	public int whenIsDueDate(Scanner sc, int bookTotal) {
@@ -60,21 +60,20 @@ public class Member extends User implements Policies{
 	public int howMuchFine(int overdue, int bookTotal) {
 		totalFine = overdue*fine;
 		for(int i=0;i<bookTotal;i++) {
-			System.out.printf("Too late. Your fine will be %d $\n", totalFine);
+			System.out.printf("Too late. Your fine will be $ %d \n", totalFine);
 		}// for end
 		return totalFine;
 	} //howMuchFine end
 	
-	void writeMemberFile() { //writing new object to file
+	void writeMemberFile(ArrayList<Member> memberArr) { //writing new object to file
 		try {
 			FileOutputStream output = new FileOutputStream("member.lib");
 			ObjectOutputStream objectOutput = new ObjectOutputStream(output);
 			
-			for(int i=0;i<Library.memberArr.size();i++) {
-				objectOutput.writeObject(Library.memberArr.get(i));
-			}
-		
+			objectOutput.writeObject(memberArr);
+			
 			output.close();
+			objectOutput.close();
 		} catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
 		}catch(IOException ioe) {

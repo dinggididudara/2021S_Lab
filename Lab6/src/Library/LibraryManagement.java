@@ -1,12 +1,18 @@
 package Library;
 
+import java.io.Serializable;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  * {@summary }
  * 
  *
  */
-public class LibraryManagement{
+public class LibraryManagement implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	static String name; //library name
 	public static void main(String[] args) {
 		int option;
@@ -25,10 +31,10 @@ public class LibraryManagement{
 			System.out.println("5. Exit");
 			System.out.print("Choose your option: ");
 			option = sc.nextInt();
-			User u = new User();
+//			User u = new User();
 			switch(option) {
 				case 1:
-					l.read(sc);
+					l.readDetails(sc);
 					break;
 				case 2:
 					printBookTable();
@@ -36,11 +42,11 @@ public class LibraryManagement{
 					break;
 				case 3:
 					printStaffTable();
-					u.openStaffFile();
+					User.openStaffFile();
 					break;
 				case 4:
 					printMemberTable();
-					u.openMemberFile();
+					User.openMemberFile();
 					break;
 				case 5:
 					sc.close();
@@ -51,6 +57,8 @@ public class LibraryManagement{
 					continue;
 			} //switch-case end
 		} //while end
+		} catch(InputMismatchException e) {
+			System.err.println("Input Mismatch Exception");
 		} catch(Exception e) {
 			System.err.println("please try again");
 		} //try-catch end
@@ -64,12 +72,12 @@ public class LibraryManagement{
 	
 	public static void printStaffTable() {
 		printLibraryName();
-		System.out.println(" Name | Staff Id | Section |");
+		System.out.println("    Name    |    email    | phone number | Staff Id | Section |");
 	}
 	
 	public static void printMemberTable() {
 		printLibraryName();
-		System.out.println(" Name | Member Id | Books | OverDue | Fine |");
+		System.out.println("    Name    |    email    | phoneNumber | Member Id | Books | OverDue | Fine |");
 	}
 	
 	public static void printBookTable() {

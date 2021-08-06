@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * {@summary }
@@ -14,8 +15,13 @@ import java.util.Scanner;
 public class User extends Person implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	User(){}
+	User(String name){
+		
+	}
+	
 	@Override
-	void readStaff(Scanner sc) {
+	void read(Scanner sc) {
 		super.PersonInfo(sc);
 	} //readUser end
 	
@@ -23,21 +29,25 @@ public class User extends Person implements Serializable{
 		return fname + " " + lname;
 	} //getName end
 	
-	void openStaffFile() { //open staff file
-		try {			
+	@SuppressWarnings("unchecked")
+	static void openStaffFile() { //open staff file
+		try {	
+			ArrayList<Staff> staffArr = new ArrayList<Staff>();
 			FileInputStream inputStaff = new FileInputStream("staff.lib"); //open file
 			ObjectInputStream objectInputStaff = new ObjectInputStream(inputStaff);
 			
-			Library.staffArr.add((Staff)objectInputStaff.readObject()); //read objects
-			
-			if(!(Library.staffArr.isEmpty())) {
-				for(int i=0;i<Library.staffArr.size();i++) {
-					System.out.printf(" %s | %d | %s |\n", Library.staffArr.get(i).getName(),Library.staffArr.get(i).id, Library.staffArr.get(i).section);
+			staffArr = (ArrayList<Staff>) objectInputStaff.readObject(); //read objects  
+
+			if(!(staffArr.isEmpty())) {
+				for(int i=0;i<staffArr.size();i++) {
+					staffArr.get(i).print(); 
 				}
 			}else {
 				System.err.println("Please read staffs from keyboard or file");
 			} //if-else end
 			
+			System.out.println("open file end"); //delete later
+			inputStaff.close();
 			objectInputStaff.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
@@ -48,23 +58,24 @@ public class User extends Person implements Serializable{
 		}//try-catch end
 	} //openFile end
 	
-	void openMemberFile() { //open member file
-		try {		
-//			ArrayList<Member> memberArr = new ArrayList<Member>();
+	@SuppressWarnings("unchecked")
+	static void openMemberFile() { //open member file
+		try {	
+			ArrayList<Member> memberArr = new ArrayList<Member>();
 			FileInputStream inputStaff = new FileInputStream("member.lib");
 			ObjectInputStream objectInputMember = new ObjectInputStream(inputStaff);
 			
-			Library.memberArr.add((Member) objectInputMember.readObject());
-//			printDetailsMember(memberArr);
+			memberArr = (ArrayList<Member>) objectInputMember.readObject();
 
-			if(!(Library.memberArr.isEmpty())) {
-				for(int i=0;i<Library.memberArr.size();i++) {
-					System.out.printf(" %s | %s |\n", Library.memberArr.get(i).getName(), Library.memberArr.get(i).getId());
+			if(!(memberArr.isEmpty())) {
+				for(int i=0;i<memberArr.size();i++) {
+					memberArr.get(i).print();
 				}
 			}else {
 				System.err.println("Please read members from keyboard or file");
 			} //if-else end
 			
+			inputStaff.close();
 			objectInputMember.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
@@ -76,8 +87,7 @@ public class User extends Person implements Serializable{
 	} //openFile end
 
 	@Override
-	void print() {
-		// TODO Auto-generated method stub
-		
+	void print() { //print personal information, common instance staff and member
+		System.out.printf(" %10s | %10s | %10d |", getName(), email, phoneNumber);
 	}
 } //User class end

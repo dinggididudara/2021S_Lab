@@ -15,27 +15,18 @@ import java.util.Scanner;
  *
  */
 public class Book implements Serializable{
-	/**
-	 * serial id for object writer
-	 */
 	private static final long serialVersionUID = 1L;
 	protected String categ;
-	protected String title;
-	protected String author;
-	protected int year;
 	int bookTotal;
 	
-	static ArrayList<Book> bookArr = new ArrayList<Book>();
+	
 	
 	Book(){}
 	
-	Book(String categ, String title, String author, int year){
-		this.categ = categ;
-		this.title = title;
-		this.author = author;
-		this.year = year;
+	void print(){
+		System.out.printf("%d |", bookTotal);
 	}
-
+	
 	public void readBook(Scanner sc) {
 		System.out.print("How many books did you borrow?: ");
 		bookTotal = sc.nextInt();
@@ -43,6 +34,7 @@ public class Book implements Serializable{
 	} //read end
 	
 	public void readBook2(Scanner sc, int bookTotal) {
+		 ArrayList<Book> bookArr = new ArrayList<Book>();
 		for(int i=0;i<bookTotal;i++) { //add books
 			if(bookTotal <= 5) {
 				Book b = new Book();
@@ -63,34 +55,33 @@ public class Book implements Serializable{
 				} //switch-case end
 				b.readBook(sc);
 				bookArr.add(i, b);
-				writeBookFile(); //write objects to file
+				b.writeBookFile(bookArr); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
 				System.out.println("over maximum. Try again.");
 				continue;
 			} //if-else end
 		} //for end
-	}
-		
-	public void printt() {
-		
-	}
+	} //readBook2 end
 
+	@SuppressWarnings("unchecked")
 	static void openBookFile() { //open book file
 		try {
+			ArrayList<Book> bookArr = new ArrayList<Book>();
 			FileInputStream inputBook = new FileInputStream("book.lib");
 			ObjectInputStream objectInputBook = new ObjectInputStream(inputBook);
 			
-			bookArr.add((Book) objectInputBook.readObject());
+			bookArr = (ArrayList<Book>) objectInputBook.readObject();
 			
 			if(!(bookArr.isEmpty())) {
 				for(int i=0;i<bookArr.size();i++) {
-					System.out.printf(" %s | %s | %s | %d |\n", bookArr.get(i).categ, bookArr.get(i).title, bookArr.get(i).author, bookArr.get(i).year);
+					bookArr.get(i).print();
 				}
 			} else {
 				System.err.println("No book lists");
 			}
-		
-		objectInputBook.close();
+			
+			inputBook.close();
+			objectInputBook.close();
 		}catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
 		}catch(ClassNotFoundException e) {
@@ -100,22 +91,19 @@ public class Book implements Serializable{
 		} //try-catch end
 	} //openFile end
 	
-	static void writeBookFile() { //writing new object to file
+	void writeBookFile(ArrayList<Book> bookArr) { //writing new object to file
 		try {
 			FileOutputStream outputBook = new FileOutputStream("book.lib");
 			ObjectOutputStream objectOutputBook = new ObjectOutputStream(outputBook);
 		
-			for(int i=0;i<bookArr.size();i++) {
-				objectOutputBook.writeObject(bookArr.get(i));
-			}
+			objectOutputBook.writeObject(bookArr);
 			
 			outputBook.close();
+			objectOutputBook.close();
 		} catch(FileNotFoundException fe){
 			System.err.println("File not found or file not accessible");
 		}catch(IOException ioe) {
 			System.err.println("Error writing file");
 		} //try-catch end
 	} //writeBookFile end	
-//	abstract void read(Scanner sc);
-//	abstract void print();
 } //Book class end

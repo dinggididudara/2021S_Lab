@@ -1,12 +1,14 @@
 package Library;
 
+import java.io.Serializable;
 import java.util.Scanner;
 /**
  * {@summary }
  * 
  *
  */
-public abstract class Person {
+public abstract class Person implements Serializable{
+	private static final long serialVersionUID = 1L;
 	protected String fname; //first name
 	protected String lname; //last name
 	protected String email; //email address
@@ -23,6 +25,6 @@ public abstract class Person {
 		phoneNumber = sc.nextLong();
 	} //PersonInfo end
 	
-	abstract void readStaff(Scanner sc);
+	abstract void read(Scanner sc);
 	abstract void print();
 }

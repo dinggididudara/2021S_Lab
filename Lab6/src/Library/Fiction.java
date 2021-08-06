@@ -1,15 +1,13 @@
 package Library;
 
+import java.io.Serializable;
 import java.util.Scanner;
 /**
  * {@summary }
  * 
  *
  */
-public class Fiction extends Book{
-	/**
-	 * 
-	 */
+public class Fiction extends Book implements Serializable{
 	private static final long serialVersionUID = 1L;
 	String categ;
 	Fiction f;
@@ -17,7 +15,9 @@ public class Fiction extends Book{
 	@Override
 	public void readBook(Scanner sc) {
 		System.out.println("1. Comic\n2. Fantasy");
+		System.out.print(":: ");
 		categ = sc.next();
+		sc.nextLine();
 		switch(categ) {
 		case "1":
 		case "Comic":
@@ -35,6 +35,7 @@ public class Fiction extends Book{
 		} //switch-case end 
 		f.readBook(sc);
 	} //read end
+	@Override
 	void print() {
 		System.out.printf(" %10s |", categ);
 	} //print end

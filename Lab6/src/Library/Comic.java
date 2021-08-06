@@ -1,5 +1,6 @@
 package Library;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Scanner;
  * 
  *
  */
-public class Comic extends Fiction{
+public class Comic extends Fiction implements Serializable{
 	/**
 	 * 
 	 */
@@ -18,16 +19,19 @@ public class Comic extends Fiction{
 	
 	@Override
 	public void readBook(Scanner sc) {
-		System.out.print("Title: ");
-		title = sc.next();
-		System.out.print("Author: ");
-		author = sc.next();
+		System.out.println("Title:");
+		title = sc.nextLine();
+		sc.nextLine();
+		System.out.println("Author:");
+		author = sc.nextLine();
+		sc.nextLine();
 		System.out.print("Year: ");
 		year = sc.nextInt();
 	} //read end
 	
 //	@Override
 	void print() {
-		System.out.printf("| %20s | %20s | %5s", title, author, year);
+		super.print();
+		System.out.printf("| %20s | %20s | %5s \n", title, author, year);
 	} //print end
 }

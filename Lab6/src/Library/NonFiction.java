@@ -1,5 +1,6 @@
 package Library;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Scanner;
  * 
  *
  */
-public class NonFiction extends Book{
+public class NonFiction extends Book implements Serializable{
 	/**
 	 * 
 	 */
@@ -20,6 +21,7 @@ public class NonFiction extends Book{
 		System.out.println("1. Science\n2. Biography\n3. History");
 		System.out.print(":: ");
 		categ = sc.next();
+		sc.nextLine();
 			switch(categ) {
 			case "1":
 			case "Science":
@@ -37,13 +39,12 @@ public class NonFiction extends Book{
 				nf = new History();
 			default:
 				System.out.println("Wrong type! Try again");
-//				continue;
 			} //switch-case end
 			nf.readBook(sc);
 	} //read end
 
 //	@Override
 	void print() {
-		System.out.printf(" %10s", categ);
+		System.out.printf(" %10s |", categ);
 	} //print end
 } //NonFiction class end
