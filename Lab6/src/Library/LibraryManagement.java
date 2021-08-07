@@ -31,14 +31,13 @@ public class LibraryManagement implements Serializable{
 			System.out.println("5. Exit");
 			System.out.print("Choose your option: ");
 			option = sc.nextInt();
-//			User u = new User();
 			switch(option) {
 				case 1:
 					l.readDetails(sc);
 					break;
 				case 2:
 					printBookTable();
-					Member.openBookFile();
+					Book.openBookFile();
 					break;
 				case 3:
 					printStaffTable();
@@ -49,6 +48,7 @@ public class LibraryManagement implements Serializable{
 					User.openMemberFile();
 					break;
 				case 5:
+					System.out.println("Bye");
 					sc.close();
 					System.exit(0);
 					break;

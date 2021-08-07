@@ -31,15 +31,11 @@ public class Fiction extends Book implements Serializable{
 			break;
 		default:
 			System.out.println("Wrong type! Try again");
-//			continue;
 		} //switch-case end 
 		f.readBooks(sc);
 		bookArr.add(f);
+		f.writeBookFile(bookArr); //write objects to file
 	} //read end
-	
-//	public String getCateg() {
-//		return categ;
-//	}
 	
 	@Override //override from abstract class (Book class)
 	void print() {

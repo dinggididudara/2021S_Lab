@@ -8,9 +8,6 @@ import java.util.Scanner;
  *
  */
 public class History extends NonFiction implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	String title;
 	String author;

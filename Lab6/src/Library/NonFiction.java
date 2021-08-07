@@ -42,12 +42,9 @@ public class NonFiction extends Book implements Serializable{
 			} //switch-case end
 			nf.readBooks(sc);
 			bookArr.add(nf);
+			nf.writeBookFile(bookArr); //write objects to file
 	} //read end
 
-//	public String getCateg() {
-//		return categ;
-//	}
-	
 	@Override
 	void print() {
 		System.out.printf(" %10s |", categ);
