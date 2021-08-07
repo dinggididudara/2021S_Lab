@@ -9,10 +9,8 @@ import java.util.Scanner;
  *
  */
 public class NonFiction extends Book implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	String option;
 	String categ;
 	NonFiction nf;
 
@@ -20,9 +18,9 @@ public class NonFiction extends Book implements Serializable{
 	public void readBooks(Scanner sc) {
 		System.out.println("1. Science\n2. Biography\n3. History");
 		System.out.print(":: ");
-		categ = sc.next();
+		option = sc.next();
 		sc.nextLine();
-			switch(categ) {
+			switch(option) {
 			case "1":
 			case "Science":
 				categ = "Science";
