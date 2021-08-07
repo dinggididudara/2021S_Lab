@@ -30,6 +30,6 @@ public class Science extends NonFiction implements Serializable{
 	@Override
 	void print() {
 		super.print();
-		System.out.printf("| %20s | %20s | %5s \n", title, author, year);
+		System.out.printf(" %10s | %10s | %4s |\n", title, author, year);
 	} //print end
 } //Science class end

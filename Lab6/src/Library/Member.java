@@ -51,9 +51,13 @@ public class Member extends User implements Policies, Serializable{
 	public void whenIsDueDate(Scanner sc, int bookTotal) {
 		System.out.print("How many days passed since borrowed? ");
 		int days = sc.nextInt();
-		overdue = days-due;
-		if(overdue<=14) {
+		
+		if(days>14) {
+			overdue = days-due;
 			System.out.printf("Overdue : %d day(s).\n", overdue);
+		} else {
+			overdue = 0;
+			System.out.printf("Your due is %d day(s) left. \n", (due-days));
 		}
 		howMuchFine(overdue, bookTotal);
 	} //whenIsDueDate end
@@ -61,7 +65,11 @@ public class Member extends User implements Policies, Serializable{
 	@Override
 	public void howMuchFine(int overdue, int bookTotal) {
 		totalFine = overdue*fine*bookTotal; //total fine
-		System.out.printf("Too late. Your fine will be $ %d \n", totalFine);
+		if(overdue != 0) {
+			System.out.printf("Too late. Your fine will be $ %d \n", totalFine);
+		} else{
+			totalFine = 0;
+		}//if end
 	} //howMuchFine end
 	
 	void writeMemberFile(ArrayList<Member> memberArr) { //writing new object to file

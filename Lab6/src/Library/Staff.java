@@ -20,14 +20,6 @@ public class Staff extends User implements Serializable{
 	
 	Staff(){}
 	
-//	Staff(String name, String id, int floor, String section){
-//		super();
-//		name = getName();
-//		this.id = id;
-//		this.floor = floor;
-//		this.section = section;
-//	}
-	
 	@Override
 	void read(Scanner sc) { //reading staff's information from keyboard
 		super.PersonInfo(sc);

@@ -38,7 +38,7 @@ public class LibraryManagement implements Serializable{
 					break;
 				case 2:
 					printBookTable();
-					Book.openBookFile();
+					Member.openBookFile();
 					break;
 				case 3:
 					printStaffTable();
@@ -88,13 +88,13 @@ public class LibraryManagement implements Serializable{
 	
 	public static void printBookTable() {
 		System.out.println("");
-		System.out.printf("\t \t%s Library\n", name);
-		for(int i=0;i<40;i++) {
+		System.out.printf("\t \t  %s Library\n", name);
+		for(int i=0;i<46;i++) {
 			System.out.print("*");
 			} //for end
 		System.out.println("");
-		System.out.println("\t \t Book List\n");
-		System.out.println(" Category |  Title  |  Author  | Year |");
+		System.out.println("\t \t   Book List\n");
+		System.out.println("  Category  |    Title   |   Author   | Year |");
 	}
 
 } //LibraryManagement class end

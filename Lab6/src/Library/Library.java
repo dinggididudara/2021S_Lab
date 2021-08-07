@@ -40,7 +40,6 @@ public class Library implements Serializable{ //storing users and books info
 				System.out.println("Wrong type, please try again.");
 				continue;
 			} //switch-case end
-			
 		} //while end
 	} //readUser end
 } //Library class end

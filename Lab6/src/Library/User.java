@@ -40,7 +40,7 @@ public class User extends Person implements Serializable{
 
 			if(!(staffArr.isEmpty())) {
 				for(int i=0;i<staffArr.size();i++) {
-					staffArr.get(i).print(); 
+					staffArr.get(i).print(); //print
 				}
 			}else {
 				System.err.println("Please read staffs from keyboard or file");
@@ -69,7 +69,7 @@ public class User extends Person implements Serializable{
 
 			if(!(memberArr.isEmpty())) {
 				for(int i=0;i<memberArr.size();i++) {
-					memberArr.get(i).print();
+					memberArr.get(i).print(); //print 
 				}
 			}else {
 				System.err.println("Please read members from keyboard or file");
@@ -85,9 +85,37 @@ public class User extends Person implements Serializable{
 			System.err.println("Error opening file");
 		} //try-catch end
 	} //openFile end
-
+	
+	@SuppressWarnings("unchecked")
+	static void openBookFile() { //open book file
+		try {
+			ArrayList<Book> bookArr = new ArrayList<Book>();
+			FileInputStream inputBook = new FileInputStream("book.lib");
+			ObjectInputStream objectInputBook = new ObjectInputStream(inputBook);
+			
+			bookArr = (ArrayList<Book>) objectInputBook.readObject();
+			
+			if(!(bookArr.isEmpty())) {
+				for(int i=0;i<bookArr.size();i++) {
+					bookArr.get(i).print(); //print book's information
+				}
+			} else {
+				System.err.println("No book lists");
+			}
+			
+			inputBook.close();
+			objectInputBook.close();
+		}catch(FileNotFoundException fe){
+			System.err.println("File not found or file not accessible");
+		}catch(ClassNotFoundException e) {
+//			
+		}catch(IOException ioe) {
+			System.err.println("Error opening file");
+		} //try-catch end
+	} //openFile end
+	
 	@Override
 	void print() { //print personal information, common instance staff and member
 		System.out.printf(" %14s | %11s | %12d |", getName(), email, phoneNumber);
-	}
+	} //print end
 } //User class end

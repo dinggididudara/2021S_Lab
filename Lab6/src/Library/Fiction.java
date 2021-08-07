@@ -34,8 +34,14 @@ public class Fiction extends Book implements Serializable{
 //			continue;
 		} //switch-case end 
 		f.readBooks(sc);
+		bookArr.add(f);
 	} //read end
-	@Override
+	
+//	public String getCateg() {
+//		return categ;
+//	}
+	
+	@Override //override from abstract class (Book class)
 	void print() {
 		System.out.printf(" %10s |", categ);
 	} //print end

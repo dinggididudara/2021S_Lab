@@ -27,9 +27,9 @@ public class Fantasy extends Fiction implements Serializable{
 		year = sc.nextInt();
 	} //read end
 	
-	@Override
+//	@Override
 	void print() {
 		super.print();
-		System.out.printf("| %20s | %20s | %5s \n", title, author, year);
+		System.out.printf(" %10s | %10s | %4s |\n", title, author, year);
 	} //print end
 } //Fantasy class end

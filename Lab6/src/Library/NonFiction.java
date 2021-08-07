@@ -41,9 +41,14 @@ public class NonFiction extends Book implements Serializable{
 				System.out.println("Wrong type! Try again");
 			} //switch-case end
 			nf.readBooks(sc);
+			bookArr.add(nf);
 	} //read end
 
-//	@Override
+//	public String getCateg() {
+//		return categ;
+//	}
+	
+	@Override
 	void print() {
 		System.out.printf(" %10s |", categ);
 	} //print end
