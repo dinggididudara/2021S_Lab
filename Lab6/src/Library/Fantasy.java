@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 /**
- * {@summary }
+ * {@summary Fantasy class : reading title, year of book}
  * 
  *
  */
@@ -16,7 +16,10 @@ public class Fantasy extends Fiction implements Serializable{
 	String title;
 	String author;
 	int year;
-	
+	/**
+	 * {@summary readBooks method : ask user to input book's information}
+	 * @param sc Scanner
+	 */
 	@Override
 	public void readBooks(Scanner sc) {
 		categ = "Fantasy";
@@ -27,8 +30,10 @@ public class Fantasy extends Fiction implements Serializable{
 		System.out.print("Year:");
 		year = sc.nextInt();
 	} //read end
-	
-//	@Override
+	/**
+	 * {@summary print method : override from Book class, print infos}
+	 */
+	@Override
 	void print() {
 		super.print();
 		System.out.printf(" %10s | %10s | %4s |\n", title, author, year);

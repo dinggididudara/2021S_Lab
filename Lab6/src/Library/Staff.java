@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- * {@summary }
+ * {@summary Staff class : read staff information from user input}
  * 
  *
  */
@@ -18,8 +18,11 @@ public class Staff extends User implements Serializable{
 	int floor;
 	String section;
 	
-	Staff(){}
-	
+	Staff(){} //empty it, initialize
+	/**
+	 * {@summary read staff information , id, floor, section}
+	 * @param sc Scanner
+	 */
 	@Override
 	void read(Scanner sc) { //reading staff's information from keyboard
 		super.PersonInfo(sc);
@@ -30,7 +33,10 @@ public class Staff extends User implements Serializable{
 		System.out.print("section?: ");
 		section = sc.next();
 	} //read end
-	
+	/**
+	 * {@summary writeStaffFile method : write staff array list to staff.lib}
+	 * @param staffArr staff array list
+	 */
 	void writeStaffFile(ArrayList<Staff> staffArr) { //writing new object to file
 		try {
 			FileOutputStream output = new FileOutputStream("staff.lib"); //open file
@@ -46,7 +52,9 @@ public class Staff extends User implements Serializable{
 			System.err.println("Error writing file");
 		} //try-catch end
 	} //writeStaffFile end
-	
+	/**
+	 * {@summary print method : override from person class, print id and section}
+	 */
 	@Override
 	void print() {
 		super.print();

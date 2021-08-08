@@ -10,18 +10,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- * {@summary }
- * 
+ * {@summary Book class : ask user to input book lists}
+ *  
  *
  */
 public abstract class Book implements Serializable{
 	private static final long serialVersionUID = 1L;
-	protected String categ;	
-	static ArrayList<Book> bookArr = new ArrayList<Book>();
+	protected String categ;	 //category, fiction or nonfiction
+	static ArrayList<Book> bookArr = new ArrayList<Book>(); //for book lists
 	
 	abstract void print(); //abstract method for sub classes
-	abstract void readBooks(Scanner sc);
-	
+	abstract void readBooks(Scanner sc); //abstract method for sub classes
+	/**
+	 * {@summary readBook method : reading book's information, Fiction or NonFiction}
+	 * @param sc Scanner
+	 */
 	public static void readBook(Scanner sc) {
 		int bookTotal = Member.getBookTotal();
 		for(int i=0;i<bookTotal;i++) { //add books
@@ -43,15 +46,15 @@ public abstract class Book implements Serializable{
 					continue;
 				} //switch-case end
 				b.readBooks(sc);
-//				bookArr.add(b);
-//				b.writeBookFile(bookArr); //write objects to file
 			}else if(bookTotal>5) { //if over maximum number of books
 				System.out.println("over maximum. Try again.");
 				continue;
 			} //if-else end
 		} //for end
 	} //readBook2 end
-	
+	/**
+	 * {@summary openBookFile method : open book file (book.lib) and print to console}
+	 */
 	@SuppressWarnings("unchecked")
 	static void openBookFile() { //open book file
 		try {
@@ -71,15 +74,18 @@ public abstract class Book implements Serializable{
 			
 			inputBook.close();
 			objectInputBook.close();
-		}catch(FileNotFoundException fe){
+		}catch(FileNotFoundException fe){ //if file is not found
 			System.err.println("File not found or file not accessible");
 		}catch(ClassNotFoundException e) {
-//			
+			System.err.println("File not found or file not accessible");
 		}catch(IOException ioe) {
 			System.err.println("Error opening file");
 		} //try-catch end
 	} //openFile end
-	
+	/**
+	 * {@summary writeBookFile method : write book lists which saved in bookArr to book list file (book.lib)}
+	 * @param bookArr book lists' array list
+	 */
 	void writeBookFile(ArrayList<Book> bookArr) { //writing new object to file
 		try {
 			FileOutputStream outputBook = new FileOutputStream("book.lib");
@@ -89,9 +95,9 @@ public abstract class Book implements Serializable{
 			
 			outputBook.close();
 			objectOutputBook.close();
-		} catch(FileNotFoundException fe){
+		} catch(FileNotFoundException fe){ //if file is not found
 			System.err.println("File not found or file not accessible");
-		}catch(IOException ioe) {
+		}catch(IOException ioe) { 
 			System.err.println("Error writing file");
 		} //try-catch end
 	} //writeBookFile end	

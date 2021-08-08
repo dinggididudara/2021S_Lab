@@ -3,7 +3,7 @@ package Library;
 import java.io.Serializable;
 import java.util.Scanner;
 /**
- * {@summary }
+ * {@summary Person calss ; read personal information, name, email, phone number}
  * 
  *
  */
@@ -25,6 +25,6 @@ public abstract class Person implements Serializable{
 		phoneNumber = sc.nextLong();
 	} //PersonInfo end
 	
-	abstract void read(Scanner sc);
-	abstract void print();
+	abstract void read(Scanner sc); //abstract class for User class and sub classes
+	abstract void print(); //abstract class for User class and sub classes
 }

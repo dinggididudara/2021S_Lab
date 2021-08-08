@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 /**
- * {@summary }
+ * {@summary NonFiction class : if user input non fiction as a book category}
  * 
  *
  */
@@ -13,7 +13,9 @@ public class NonFiction extends Book implements Serializable{
 	protected String option;
 	protected String categ;
 	protected NonFiction nf;
-
+	/**
+	 * {@summary readBooks method : override from Book class, read category of book}
+	 */
 	@Override
 	public void readBooks(Scanner sc) {
 		System.out.println("1. Science\n2. Biography\n3. History");
@@ -39,7 +41,9 @@ public class NonFiction extends Book implements Serializable{
 			bookArr.add(nf);
 			nf.writeBookFile(bookArr); //write objects to file
 	} //read end
-
+	/**
+	 * {@summary print method : override from book class, print book's category}
+	 */
 	@Override
 	void print() {
 		System.out.printf(" %10s |", categ);

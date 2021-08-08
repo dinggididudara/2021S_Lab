@@ -10,13 +10,14 @@ import java.util.Scanner;
  *
  */
 public class Library implements Serializable{ //storing users and books info
-
 	private static final long serialVersionUID = 1L;
 	User u;
-	
 	static ArrayList<Staff> staffArr = new ArrayList<Staff>();
 	static ArrayList<Member> memberArr = new ArrayList<Member>();
-	
+	/**
+	 * {@summary readDetails method : read staff or member, and add to each array lists}
+	 * @param sc Scanner
+	 */
 	void readDetails(Scanner sc) { //ask staff or member
 		System.out.print("how many people will you write? ");
 		int num = sc.nextInt();
@@ -28,7 +29,7 @@ public class Library implements Serializable{ //storing users and books info
 				Staff s = new Staff();
 				s.read(sc);
 				staffArr.add(s);
-				s.writeStaffFile(staffArr); //write objects to file //error
+				s.writeStaffFile(staffArr); //write objects to file
 				break;
 			case 2: //if member
 				Member m = new Member();

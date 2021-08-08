@@ -4,18 +4,19 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 /**
- * {@summary }
+ * {@summary Biography class : reading title, year of book}
  * 
  *
  */
 public class Biography extends NonFiction implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	String title;
 	String author;
 	int year;
+	/**
+	 * {@summary readBooks method : ask user to input book's information}
+	 * @param sc Scanner
+	 */
 	@Override
 	public void readBooks(Scanner sc) {
 		categ = "Biography";
@@ -26,7 +27,9 @@ public class Biography extends NonFiction implements Serializable{
 		System.out.print("Year: ");
 		year = sc.nextInt();
 	} //read end
-	
+	/**
+	 * {@summary print method : override from Book class, print infos}
+	 */
 	@Override
 	void print() {
 		super.print();

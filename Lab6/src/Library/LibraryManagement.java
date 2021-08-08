@@ -4,16 +4,15 @@ import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
- * {@summary }
- * 
- *
+ * {@summary LibraryManagement class : main class that perform all menus}
  */
 public class LibraryManagement implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	static String name; //library name
+	/**
+	 * {@summary main method : print menu and perform all options}
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		int option;
 	
@@ -63,7 +62,9 @@ public class LibraryManagement implements Serializable{
 			System.err.println("please try again");
 		} //try-catch end
 	} //main end
-	
+	/**
+	 * {@summary printStaffTable method : table for staff (menu 3)}
+	 */
 	public static void printStaffTable() {
 		System.out.println("");
 		System.out.printf("\t \t \t%s Library\n", name); 
@@ -73,8 +74,10 @@ public class LibraryManagement implements Serializable{
 		System.out.println("");
 		System.out.println("\t \t \t Staff List\n");
 		System.out.println("      Name      |    email    | phone Number | Staff Id | Section |");
-	}
-	
+	} //printStaffTable end
+	/**
+	 * {@summary printMemberTable method : table for member (menu 4)}
+	 */
 	public static void printMemberTable() {
 		System.out.println("");
 		System.out.printf("\t \t \t \t%s Library\n", name);
@@ -84,8 +87,10 @@ public class LibraryManagement implements Serializable{
 		System.out.println("");
 		System.out.println("\t \t \t \t Member List\n");
 		System.out.println("      Name      |    email    | phone Number | Member Id | Books | OverDue | Fine |");
-	}
-	
+	} //printMemberTable end
+	/**
+	 * {@summary printBookTable method : table for book list (menu 2)}
+	 */
 	public static void printBookTable() {
 		System.out.println("");
 		System.out.printf("\t \t  %s Library\n", name);
@@ -95,6 +100,5 @@ public class LibraryManagement implements Serializable{
 		System.out.println("");
 		System.out.println("\t \t   Book List\n");
 		System.out.println("  Category  |    Title   |   Author   | Year |");
-	}
-
+	} //printBookTable end
 } //LibraryManagement class end

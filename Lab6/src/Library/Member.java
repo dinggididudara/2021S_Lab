@@ -13,18 +13,19 @@ import java.util.Scanner;
  *
  */
 public class Member extends User implements Policies, Serializable{
-	/**
-	 * serial id for object writing
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; //for object writing, reading
 	String id; //member's id
 	int age;
 	int overdue;
 	int totalFine;
 	static int bookTotal;
 	
-	Member() {}
-	
+	Member() {} //initialize, empty it
+	/**
+	 * {@summary read method : override from User class, read personal info + member info}
+	 * @param sc Scanner
+	 * {@link #PersonInfo(Scanner)}
+	 */
 	@Override
 	void read(Scanner sc) {
 		super.PersonInfo(sc);
@@ -39,14 +40,23 @@ public class Member extends User implements Policies, Serializable{
 		whenIsDueDate(sc, bookTotal);		
 	} //readMember end
 	
-	public static int getBookTotal() {return bookTotal;}
-	
+	public static int getBookTotal() {return bookTotal;} //saving book total (int)
+	/**
+	 * {@summary print method : override from User class, print member information}
+	 * 
+	 */
 	@Override
 	void print() {
 		super.print();
 		System.out.printf(" %9s | %5d | %2d days | $%3d |\n", id, getBookTotal(), overdue, totalFine); //fix book total copy to book class somewhr
 	} //print end
-	
+	/**
+	 * {@summary whenIsDueDate method : Override from Policies interface, reading how many days passed since borrowed, then calculate overdue and send to howMuchFine method}
+	 * @param sc Scanner
+	 * @param bookTotal total book numbers that member borrowed
+	 * 
+	 * {@link #howMuchFine(int, int)}
+	 */
 	@Override
 	public void whenIsDueDate(Scanner sc, int bookTotal) {
 		System.out.print("How many days passed since borrowed? ");
@@ -61,7 +71,11 @@ public class Member extends User implements Policies, Serializable{
 		}
 		howMuchFine(overdue, bookTotal);
 	} //whenIsDueDate end
-
+	/**
+	 * {@summary howMuchFine method : Override from Policies interface, calculating fine}
+	 * @param overdue overdue date from whenIsDueDate method
+	 * @param bookTotal total book numbers that member borrowed
+	 */
 	@Override
 	public void howMuchFine(int overdue, int bookTotal) {
 		totalFine = overdue*fine*bookTotal; //total fine
@@ -71,7 +85,10 @@ public class Member extends User implements Policies, Serializable{
 			totalFine = 0;
 		}//if end
 	} //howMuchFine end
-	
+	/**
+	 * {@summary writeMemberFile method : write the member array list to member file(member.lib)}
+	 * @param memberArr member array list
+	 */
 	void writeMemberFile(ArrayList<Member> memberArr) { //writing new object to file
 		try {
 			FileOutputStream output = new FileOutputStream("member.lib");

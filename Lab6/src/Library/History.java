@@ -3,7 +3,7 @@ package Library;
 import java.io.Serializable;
 import java.util.Scanner;
 /**
- * {@summary }
+ * {@summary History class : reading title, author, year}
  * 
  *
  */
@@ -12,7 +12,10 @@ public class History extends NonFiction implements Serializable{
 	String title;
 	String author;
 	int year;
-	
+	/**
+	 * @param sc Scanner
+	 * {@summary readBooks method : ask user to input book's information}
+	 */
 	@Override
 	public void readBooks(Scanner sc){
 		categ = "History";
@@ -23,7 +26,9 @@ public class History extends NonFiction implements Serializable{
 		System.out.print("Year:");
 		year = sc.nextInt();
 	}
-	
+	/**
+	 * {@summary print method : override from Book class, print infos}
+	 */
 	@Override
 	void print() {
 		super.print();
