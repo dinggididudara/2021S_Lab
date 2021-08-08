@@ -22,12 +22,10 @@ public class Fiction extends Book implements Serializable{
 		switch(option) {
 		case "1":
 		case "Comic":
-//			categ = "Comic";
 			f = new Comic();
 			break;
 		case "2":
 		case "Fantasy":
-//			categ = "Fantasy";
 			f = new Fantasy();
 			break;
 		default:
