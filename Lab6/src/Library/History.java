@@ -15,6 +15,7 @@ public class History extends NonFiction implements Serializable{
 	
 	@Override
 	public void readBooks(Scanner sc){
+		categ = "History";
 		System.out.println("Title:");
 		title = sc.nextLine();
 		System.out.println("Author:");

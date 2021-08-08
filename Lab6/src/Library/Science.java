@@ -19,6 +19,7 @@ public class Science extends NonFiction implements Serializable{
 	
 	@Override
 	public void readBooks(Scanner sc) {
+		categ = "Science";
 		System.out.println("Title:");
 		title = sc.nextLine();
 		System.out.println("Author:");

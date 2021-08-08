@@ -19,6 +19,7 @@ public class Comic extends Fiction implements Serializable{
 	
 	@Override
 	public void readBooks(Scanner sc) {
+		categ = "Comic";
 		System.out.println("Title:");
 		title = sc.nextLine();
 		System.out.println("Author:");

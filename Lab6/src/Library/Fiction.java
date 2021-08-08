@@ -9,9 +9,9 @@ import java.util.Scanner;
  */
 public class Fiction extends Book implements Serializable{
 	private static final long serialVersionUID = 1L;
-	String option;
-	String categ;
-	Fiction f;
+	protected String option;
+	protected String categ;
+	protected Fiction f;
 	
 	@Override
 	public void readBooks(Scanner sc) {
@@ -22,12 +22,12 @@ public class Fiction extends Book implements Serializable{
 		switch(option) {
 		case "1":
 		case "Comic":
-			categ = "Comic";
+//			categ = "Comic";
 			f = new Comic();
 			break;
 		case "2":
 		case "Fantasy":
-			categ = "Fantasy";
+//			categ = "Fantasy";
 			f = new Fantasy();
 			break;
 		default:

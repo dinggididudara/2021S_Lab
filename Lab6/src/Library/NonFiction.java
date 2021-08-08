@@ -10,9 +10,9 @@ import java.util.Scanner;
  */
 public class NonFiction extends Book implements Serializable{
 	private static final long serialVersionUID = 1L;
-	String option;
-	String categ;
-	NonFiction nf;
+	protected String option;
+	protected String categ;
+	protected NonFiction nf;
 
 	@Override
 	public void readBooks(Scanner sc) {
@@ -23,17 +23,17 @@ public class NonFiction extends Book implements Serializable{
 			switch(option) {
 			case "1":
 			case "Science":
-				categ = "Science";
+//				categ = "Science";
 				nf = new Science();
 				break;
 			case "2":
 			case "Biography":
-				categ = "Biography";
+//				categ = "Biography";
 				nf = new Biography();
 				break;
 			case "3":
 			case "History":
-				categ = "History";
+//				categ = "History";
 				nf = new History();
 			default:
 				System.out.println("Wrong type! Try again");

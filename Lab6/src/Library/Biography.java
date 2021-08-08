@@ -18,6 +18,7 @@ public class Biography extends NonFiction implements Serializable{
 	int year;
 	@Override
 	public void readBooks(Scanner sc) {
+		categ = "Biography";
 		System.out.println("Title:");
 		title = sc.nextLine();
 		System.out.println("Author:");
